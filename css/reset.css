@@ -1,33 +1,41 @@
-/* Reset CSS */
+/* Reset CSS Completo */
 
-* {
+/* Box model e espaçamento */
+*,
+*::before,
+*::after {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
 }
 
+/* Altura total para html e body */
 html,
 body {
   height: 100%;
 }
 
+/* Corpo: tipografia e cores base */
 body {
   line-height: 1;
   font-family: sans-serif;
-  background: #fff;
+  background-color: #fff;
   color: #000;
 }
 
+/* Listas sem marcadores */
 ul,
 ol {
   list-style: none;
 }
 
+/* Links sem sublinhado e cor herdada */
 a {
   text-decoration: none;
   color: inherit;
 }
 
+/* Mídia responsiva */
 img,
 picture,
 video,
@@ -35,8 +43,10 @@ canvas,
 svg {
   display: block;
   max-width: 100%;
+  height: auto;
 }
 
+/* Inputs e botões sem estilos padrões */
 button,
 input,
 select,
@@ -45,9 +55,42 @@ textarea {
   border: none;
   background: none;
   outline: none;
+  color: inherit;
 }
 
+/* Botão com cursor pointer */
+button {
+  cursor: pointer;
+}
+
+/* Tabelas sem espaçamento extra */
 table {
   border-collapse: collapse;
   border-spacing: 0;
+}
+
+/* Remover estilos padrão de citações */
+blockquote,
+q {
+  quotes: none;
+}
+
+blockquote::before,
+blockquote::after,
+q::before,
+q::after {
+  content: "";
+  content: none;
+}
+
+/* Remover estilos padrão de hr */
+hr {
+  height: 0;
+  color: inherit;
+  border: none;
+}
+
+/* Remover estilos padrão de address */
+address {
+  font-style: normal;
 }

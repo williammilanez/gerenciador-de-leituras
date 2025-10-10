@@ -34,14 +34,49 @@
 
   <body>
     <header>
-      <h1>Header</h1>
+      <div id="header-top">
+        <div id="logo">
+          <img
+            src="./assets/icons/open-book-navy-low.svg"
+            alt="Imagem de um livro aberto"
+          />
+          <p class="heading">Minha Biblioteca</p>
+        </div>
+
+        <button id="add-book">
+          <img src="./assets/icons/plus-white.svg" alt="Símbolo de mais" />
+          Adicionar livro
+        </button>
+      </div>
+
+      <section id="stats">
+        <div class="stat-card">
+          <div class="stat-number">5</div>
+          <div class="stat-label">Total</div>
+        </div>
+
+        <div class="stat-card">
+          <div class="stat-number">2</div>
+          <div class="stat-label">Quero ler</div>
+        </div>
+
+        <div class="stat-card">
+          <div class="stat-number">2</div>
+          <div class="stat-label">Lendo</div>
+        </div>
+
+        <div class="stat-card">
+          <div class="stat-number">1</div>
+          <div class="stat-label">Lidos</div>
+        </div>
+      </section>
     </header>
 
-    <main>
+    <main hidden>
       <p>Main</p>
     </main>
 
-    <footer>
+    <footer hidden>
       <p>Footer</p>
     </footer>
 
