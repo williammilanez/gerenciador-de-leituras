@@ -72,8 +72,201 @@
       </section>
     </header>
 
-    <main hidden>
-      <p>Main</p>
+    <main>
+      <section id="filter">
+        <div class="search-row">
+          <img
+            src="./assets/icons/search-gray-400.svg"
+            alt="Ícone de pesquisa"
+          />
+          <input
+            type="text"
+            id="search-input"
+            placeholder="Buscar por título ou autor..."
+          />
+        </div>
+
+        <select id="search-filter" name="search-filter">
+          <option value="todos-os-status">Todos os status</option>
+          <option value="total">Total</option>
+          <option value="quero-ler">Quero ler</option>
+          <option value="lendo">Lendo</option>
+          <option value="lidos">Lidos</option>
+        </select>
+      </section>
+
+      <section id="books">
+        <ul class="cards-list">
+          <li class="cards">
+            <div class="cardContent">
+              <img
+                src="./assets/images/Roube como um artista.png"
+                alt="Livro Roube como um artista"
+              />
+              <div class="bookCard">
+                <div class="title">
+                  <h2 class="title-book">Roube como um artista</h2>
+                  <p class="author">Austin Kleon</p>
+                </div>
+                <div class="description">
+                  <p class="stats-book">Lido</p>
+                  <p class="stars">
+                    <img
+                      src="./assets/icons/star_fill.svg"
+                      alt="Quantidade de estrelas - feedback"
+                    />
+                  </p>
+                  <p class="comment">
+                    Maravilhoso, abre a mente! Difícil parar de ler.
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            <div class="cardFooter">
+              <button class="edit-book">
+                <img src="./assets/icons/pen.svg" alt="Símbolo de editar" />
+                Editar
+              </button>
+              <button class="delete-book">
+                <img
+                  src="./assets/icons/trash-red-bright.svg"
+                  alt="Símbolo de excluir"
+                />
+                Excluir
+              </button>
+            </div>
+          </li>
+
+          <li class="cards">
+            <div class="cardContent">
+              <img
+                src="./assets/images/Entendendo Algoritmos.png"
+                alt="Livro Entendendo Algoritmos"
+              />
+              <div class="bookCard">
+                <div class="title">
+                  <h2 class="title-book">Entendendo Algoritmos</h2>
+                  <p class="author">Aditya Y. Bhargava</p>
+                </div>
+                <div class="description">
+                  <p class="stats-book">Lendo</p>
+                </div>
+              </div>
+            </div>
+
+            <div class="cardFooter">
+              <button class="edit-book">
+                <img src="./assets/icons/pen.svg" alt="Símbolo de editar" />
+                Editar
+              </button>
+              <button class="delete-book">
+                <img
+                  src="./assets/icons/trash-red-bright.svg"
+                  alt="Símbolo de excluir"
+                />
+                Excluir
+              </button>
+            </div>
+          </li>
+
+          <li class="cards">
+            <div class="cardContent">
+              <img
+                src="./assets/images/The Pragmatic Programmer.png"
+                alt="Livro The Pragmatic Programmer"
+              />
+              <div class="bookCard">
+                <div class="title">
+                  <h2 class="title-book">The Pragmatic Programmer</h2>
+                  <p class="author">David Thomas, Andrew Hunt</p>
+                </div>
+                <div class="description">
+                  <p class="stats-book">Quero ler</p>
+                </div>
+              </div>
+            </div>
+
+            <div class="cardFooter">
+              <button class="edit-book">
+                <img src="./assets/icons/pen.svg" alt="Símbolo de editar" />
+                Editar
+              </button>
+              <button class="delete-book">
+                <img
+                  src="./assets/icons/trash-red-bright.svg"
+                  alt="Símbolo de excluir"
+                />
+                Excluir
+              </button>
+            </div>
+          </li>
+
+          <li class="cards">
+            <div class="cardContent">
+              <img
+                src="./assets/images/JavaScript O Guia Definitivo.png"
+                alt="Livro JavaScript O Guia Definitivo"
+              />
+              <div class="bookCard">
+                <div class="title">
+                  <h2 class="title-book">JavaScript O Guia Definitivo</h2>
+                  <p class="author">David Flanagan</p>
+                </div>
+                <div class="description">
+                  <p class="stats-book">Lendo</p>
+                </div>
+              </div>
+            </div>
+
+            <div class="cardFooter">
+              <button class="edit-book">
+                <img src="./assets/icons/pen.svg" alt="Símbolo de editar" />
+                Editar
+              </button>
+              <button class="delete-book">
+                <img
+                  src="./assets/icons/trash-red-bright.svg"
+                  alt="Símbolo de excluir"
+                />
+                Excluir
+              </button>
+            </div>
+          </li>
+
+          <li class="cards">
+            <div class="cardContent">
+              <img
+                src="./assets/images/Cracking the Coding Interview.png"
+                alt="Livro Cracking the Coding Interview"
+              />
+              <div class="bookCard">
+                <div class="title">
+                  <h2 class="title-book">Cracking the Coding Interview</h2>
+                  <p class="author">Gayle Laakmann McDowell</p>
+                </div>
+                <div class="description">
+                  <p class="stats-book">Quero ler</p>
+                </div>
+              </div>
+            </div>
+
+            <div class="cardFooter">
+              <button class="edit-book">
+                <img src="./assets/icons/pen.svg" alt="Símbolo de editar" />
+                Editar
+              </button>
+              <button class="delete-book">
+                <img
+                  src="./assets/icons/trash-red-bright.svg"
+                  alt="Símbolo de excluir"
+                />
+                Excluir
+              </button>
+            </div>
+          </li>
+        </ul>
+      </section>
     </main>
 
     <footer hidden>

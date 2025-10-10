@@ -71,6 +71,7 @@ header {
   max-width: 36rem;
 }
 
+/* Card individual de estatística */
 .stat-card {
   display: flex;
   flex-direction: column;
@@ -82,11 +83,13 @@ header {
   flex: 1;
 }
 
+/* Número da estatística */
 .stat-number {
   font: var(--font-heading-xl);
   color: var(--color-gray-500);
 }
 
+/* Texto/label da estatística */
 .stat-label {
   font: var(--font-body-md);
   color: var(--color-gray-400);
