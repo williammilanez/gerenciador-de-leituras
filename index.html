@@ -107,7 +107,7 @@
               />
               <div class="bookCard">
                 <div class="title">
-                  <h2 id="titleBook" class="title-book">
+                  <h2 id="firstBook" class="title-book">
                     Roube como um artista
                   </h2>
                   <p class="author">Austin Kleon</p>
@@ -153,7 +153,7 @@
               />
               <div class="bookCard">
                 <div class="title">
-                  <h2 id="titleBook" class="title-book">
+                  <h2 id="secondBook" class="title-book">
                     Entendendo Algoritmos
                   </h2>
                   <p class="author">Aditya Y. Bhargava</p>
@@ -199,7 +199,7 @@
               />
               <div class="bookCard">
                 <div class="title">
-                  <h2 id="titleBook" class="title-book">
+                  <h2 id="thirdBook" class="title-book">
                     The Pragmatic Programmer
                   </h2>
                   <p class="author">David Thomas, Andrew Hunt</p>
@@ -245,7 +245,7 @@
               />
               <div class="bookCard">
                 <div class="title">
-                  <h2 id="titleBook" class="title-book">
+                  <h2 id="fourthBook" class="title-book">
                     JavaScript O Guia Definitivo
                   </h2>
                   <p class="author">David Flanagan</p>
@@ -291,7 +291,7 @@
               />
               <div class="bookCard">
                 <div class="title">
-                  <h2 id="titleBook" class="title-book">
+                  <h2 id="fifthBook" class="title-book">
                     Cracking the Coding Interview
                   </h2>
                   <p class="author">Gayle Laakmann McDowell</p>
@@ -330,6 +330,98 @@
           </li>
         </ul>
       </section>
+
+      <div
+        id="book-form-modal"
+        role="dialog"
+        aria-modal="true"
+        aria-labelledby="book-form-title"
+        hidden
+      >
+        <form id="book-form" class="book-form" autocomplete="off" novalidate>
+          <h2 id="book-form-title">Adicionar livro</h2>
+
+          <div class="form-row">
+            <label for="book-title">Título</label>
+            <input
+              id="book-title"
+              name="title"
+              type="text"
+              placeholder="Digite o título do livro"
+              required
+            />
+          </div>
+
+          <div class="form-row">
+            <label for="book-author">Autor</label>
+            <input
+              id="book-author"
+              name="author"
+              type="text"
+              placeholder="Digite o nome do autor"
+              required
+            />
+          </div>
+
+          <div class="form-row">
+            <label for="book-image"
+              >URL da Imagem <span class="optional">(opcional)</span></label
+            >
+            <input
+              id="book-image"
+              name="image"
+              type="url"
+              placeholder="URL da capa do livro (opcional)"
+            />
+          </div>
+
+          <div class="form-row">
+            <label for="book-status">Status</label>
+            <select id="book-status" name="status" required>
+              <option value="quero-ler">Quero ler</option>
+              <option value="lendo">Lendo</option>
+              <option value="lido">Lido</option>
+            </select>
+          </div>
+
+          <fieldset class="form-row" id="rating-fieldset">
+            <legend>Avaliação</legend>
+            <div
+              class="stars-input"
+              role="radiogroup"
+              aria-labelledby="rating-fieldset"
+            >
+              <input type="radio" name="rating" id="star1" value="1" />
+              <input type="radio" name="rating" id="star2" value="2" />
+              <input type="radio" name="rating" id="star3" value="3" />
+              <input type="radio" name="rating" id="star4" value="4" />
+              <input type="radio" name="rating" id="star5" value="5" />
+
+              <div class="stars-overlay"></div>
+            </div>
+          </fieldset>
+
+          <div class="form-row">
+            <label for="book-comment"
+              >Comentário <span class="optional">(opcional)</span></label
+            >
+            <textarea
+              id="book-comment"
+              name="comment"
+              placeholder="Suas anotações sobre o livro (opcional)"
+            ></textarea>
+          </div>
+
+          <div class="form-actions">
+            <button type="button" id="cancel-add" class="btn btn-secondary">
+              Cancelar
+            </button>
+            <button type="submit" id="submit-add" class="btn btn-primary">
+              Adicionar
+            </button>
+          </div>
+        </form>
+      </div>
     </main>
 
     <footer hidden>

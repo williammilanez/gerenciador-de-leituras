@@ -1,0 +1,208 @@
+/* ===== Backdrop + Modal Base ===== */
+#book-form-modal {
+  position: fixed;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  background: rgba(0, 0, 0, 0.4);
+  z-index: 1000;
+  padding: 1.6rem;
+  box-sizing: border-box;
+  overflow-y: auto; /* permite scroll quando o conteúdo é maior que a tela */
+}
+
+#book-form-modal[hidden] {
+  display: none;
+}
+
+/* ===== Modal Dialog Box ===== */
+#book-form-modal .book-form {
+  width: 100%;
+  max-width: 520px;
+  background: var(--color-white, #fff);
+  border-radius: 1.2rem;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+  padding: 2rem;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  gap: 1.6rem;
+  max-height: 90vh; /* limita altura do modal */
+  overflow-y: auto; /* scroll interno */
+}
+
+/* ===== Título do Form ===== */
+#book-form h2 {
+  font: var(--font-heading-lg, 1.6rem/2rem sans-serif);
+  color: var(--color-gray-500, #333);
+  margin: 0;
+  text-align: center;
+}
+
+/* ===== Linhas do Form ===== */
+.form-row {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+}
+
+.form-row label {
+  font: var(--font-body-md, 1rem/1.5rem sans-serif);
+  color: var(--color-gray-400, #555);
+}
+
+.form-row input,
+.form-row select,
+.form-row textarea {
+  font: var(--font-body-md, 1rem/1.5rem sans-serif);
+  padding: 0.8rem 1rem;
+  border: 0.1rem solid var(--color-gray-200, #ccc);
+  border-radius: 0.8rem;
+  background-color: var(--color-gray-100, #f8f8f8);
+  color: var(--color-gray-500, #333);
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.form-row input:focus,
+.form-row select:focus,
+.form-row textarea:focus {
+  outline: 2px solid var(--color-navy, #1a1a8c);
+  outline-offset: 2px;
+}
+
+/* ===== Optional ===== */
+.optional {
+  font-size: 0.85rem;
+  color: var(--color-gray-300, #888);
+  font-style: italic;
+}
+
+/* ===== Fieldset Rating ===== */
+#rating-fieldset {
+  border: none;
+  padding: 0;
+  margin: 0;
+}
+
+#rating-fieldset legend {
+  font: var(--font-body-md, 1rem/1.5rem sans-serif);
+  color: var(--color-gray-400, #555);
+  margin-bottom: 0.4rem;
+}
+
+/* ===== Estrelas clicáveis ===== */
+.rating {
+  display: flex;
+  gap: 0.4rem;
+}
+
+.rating label {
+  cursor: pointer;
+  width: 2rem;
+  height: 2rem;
+  background: url("../assets/icons/star-empty.svg") no-repeat center;
+  background-size: cover;
+  display: inline-block;
+}
+
+.rating input[type="radio"] {
+  display: none;
+}
+
+/* estrela preenchida quando selecionada */
+.rating input[type="radio"]:checked ~ label,
+.rating label:hover,
+.rating label:hover ~ label {
+  background-image: url("../assets/icons/star-fill.svg");
+}
+
+/* Para hover funcionar corretamente da esquerda para a direita */
+.rating label:hover,
+.rating label:hover ~ label {
+  background-image: url("../assets/icons/star-fill.svg");
+}
+
+/* ===== Estrelas interativas ===== */
+.stars-input {
+  position: relative;
+  width: 10rem; /* 5 estrelas de 2rem */
+  height: 2rem;
+  display: block;
+  cursor: pointer;
+  background: url("../assets/icons/star-empty.svg") repeat-x;
+  background-size: 2rem;
+}
+
+/* Overlay que mostra estrelas preenchidas proporcionalmente */
+.stars-input .stars-overlay {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 0%; /* inicial: nenhuma estrela preenchida */
+  background: url("../assets/icons/star-fill.svg") repeat-x;
+  background-size: 2rem;
+  pointer-events: none; /* não bloqueia clique */
+}
+
+/* Inputs escondidos */
+.stars-input input[type="radio"] {
+  display: none;
+}
+
+/* Hover proporcional: quando passar o mouse, preenche da esquerda pra direita */
+.stars-input:hover .stars-overlay {
+  /* handled via JS para a largura proporcional ao hover */
+}
+
+/* Botões do hover/click serão controlados por JS */
+
+/* ===== Textarea ===== */
+textarea {
+  resize: vertical;
+  min-height: 4rem;
+}
+
+/* ===== Botões do Form ===== */
+.form-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 0.8rem;
+  margin-top: 1rem;
+}
+
+.btn {
+  font: var(--font-action, 1rem/1.5rem sans-serif);
+  padding: 0.8rem 1.6rem;
+  border-radius: 0.8rem;
+  cursor: pointer;
+  border: none;
+  white-space: nowrap;
+  transition: all 0.2s ease;
+}
+
+.btn-primary {
+  background-color: var(--color-navy-low, #1a1a8c);
+  color: var(--color-white, #fff);
+}
+
+.btn-primary:hover {
+  background-color: var(--color-navy, #000066);
+}
+
+.btn-secondary {
+  background-color: var(--color-gray-100, #f8f8f8);
+  color: var(--color-gray-500, #333);
+  border: 0.1rem solid var(--color-gray-300, #ccc);
+}
+
+.btn-secondary:hover {
+  background-color: var(--color-gray-200, #e0e0e0);
+}
+
+/* ===== Bloquear scroll no body quando modal aberto ===== */
+body.modal-open {
+  overflow: hidden;
+}
