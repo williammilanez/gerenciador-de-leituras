@@ -108,9 +108,7 @@
       </section>
 
       <section id="books" class="container" aria-label="Lista de livros">
-        <!-- Use um template JS em vez de hardcode, mas deixo exemplos iniciais -->
         <ul class="cards-list" role="list">
-          <!-- Exemplo de card (IDs únicos e aria-labelledby apontando para cada título) -->
           <li class="card" role="listitem" data-id="1">
             <article class="card__inner" aria-labelledby="firstBook">
               <img
@@ -134,7 +132,6 @@
                     aria-label="Avaliação: 4 de 5"
                     data-rating="4"
                   >
-                    <!-- texto protegido por CSS; fornece fallback visual -->
                     <span aria-hidden="true">★★★★☆</span>
                   </div>
 
@@ -399,7 +396,6 @@
         </ul>
       </section>
 
-      <!-- Dialog / modal do formulário (fechado por default com hidden) -->
       <div
         id="book-form-modal"
         role="dialog"
