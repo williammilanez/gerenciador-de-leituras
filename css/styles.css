@@ -37,11 +37,12 @@ header {
   height: 3.2rem;
 }
 
-#logo p {
+#logo .heading {
   font: var(--font-body-md);
   color: var(--color-gray-500);
   white-space: nowrap;
   text-overflow: ellipsis;
+  overflow: hidden;
 }
 
 /* Botão adicionar livro */
@@ -69,6 +70,11 @@ header {
   transition: all 0.2s ease;
 }
 
+button:focus {
+  outline: 1px solid Highlight;
+  outline-offset: 1px;
+}
+
 /* Estatísticas de leitura */
 #stats {
   display: grid;
@@ -83,7 +89,7 @@ header {
 .stat-card {
   display: flex;
   flex-direction: column;
-  align-items: left;
+  align-items: flex-start;
   justify-content: center;
   padding: 1.6rem;
   border: 0.1rem solid var(--color-gray-200);
@@ -114,6 +120,18 @@ header {
   margin: 0 auto 2.4rem auto;
   padding: 1.6rem 0;
   gap: 1.2rem;
+}
+
+.sr-only {
+  position: absolute !important;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+  border: 0;
 }
 
 /* Linha de pesquisa */
@@ -170,29 +188,27 @@ header {
 }
 
 /* Card de livro */
-.cards {
+.card {
   display: flex;
   flex-direction: column;
   background: var(--color-white);
   border-radius: 1.2rem;
   box-shadow: 0 0.2rem 0.8rem rgba(0, 0, 0, 0.04);
-  padding: 2.4rem 1.6rem;
+  padding: 2.4rem 1.6rem 0.8rem;
   gap: 1.2rem;
   border: 0.1rem solid var(--color-gray-200);
-  margin-bottom: 2.5rem;
 }
 
 /* Conteúdo do card */
-.cardContent {
+.card__inner {
   display: flex;
   flex-direction: column; /* Altera para coluna */
   align-items: flex-start;
   gap: 1.2rem;
-  margin-bottom: 2.4rem;
 }
 
 /* Imagem do livro */
-.cardContent img {
+.card__inner img {
   width: 100%;
   max-width: 100%;
   height: auto;
@@ -257,7 +273,7 @@ header {
 
 /* Estrelas */
 .stars {
-  display: inline-block;
+  display: block;
   position: relative;
   width: 10rem; /* 5 estrelas de 2rem */
   height: 2rem;
@@ -274,7 +290,6 @@ header {
   height: 100%;
   background: url("../assets/icons/star-fill.svg") repeat-x;
   background-size: 2rem;
-  width: 0%;
 }
 
 /* preencher proporcionalmente à nota */
@@ -298,7 +313,7 @@ header {
 .comment {
   font: var(--font-body-sm);
   color: var(--color-gray-400);
-  margin: 0.8rem 0 0;
+  margin: 0.8rem 0 2.4rem;
   text-align: left;
 }
 
@@ -317,6 +332,7 @@ header {
 /* Botão editar livro */
 .edit-book {
   display: flex;
+  justify-content: center;
   align-items: center;
   gap: 1.2rem;
   padding: 0.8rem 1.6rem;
@@ -339,6 +355,7 @@ header {
 /* Botão excluir livro */
 .delete-book {
   display: flex;
+  justify-content: center;
   align-items: center;
   gap: 1.2rem;
   padding: 0.8rem 1.6rem;

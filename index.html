@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="pt-br">
+<html lang="pt-BR">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -38,13 +38,18 @@
         <div id="logo">
           <img
             src="./assets/icons/open-book-navy-low.svg"
-            alt="Imagem de um livro aberto"
+            alt="Ícone: livro aberto"
           />
-          <p class="heading">Minha Biblioteca</p>
+          <h1 class="heading">Minha Biblioteca</h1>
         </div>
 
-        <button id="add-book">
-          <img src="./assets/icons/plus-white.svg" alt="Símbolo de mais" />
+        <button
+          id="add-book"
+          type="button"
+          aria-haspopup="dialog"
+          aria-controls="book-form-modal"
+        >
+          <img src="./assets/icons/plus-white.svg" alt="" aria-hidden="true" />
           Adicionar livro
         </button>
       </div>
@@ -73,8 +78,9 @@
     </header>
 
     <main>
-      <section id="filter">
+      <section id="filter" aria-label="Filtro de busca">
         <div class="search-row">
+          <label for="search-input" class="sr-only">Pesquisar livros</label>
           <input
             type="text"
             id="search-input"
@@ -82,6 +88,7 @@
           />
         </div>
 
+        <label for="search-filter" class="sr-only">Filtrar por status</label>
         <select id="search-filter" name="search-filter">
           <option value="todos-os-status">Todos os status</option>
           <option value="quero-ler">Quero ler</option>
@@ -92,185 +99,234 @@
 
       <section id="books">
         <ul class="cards-list">
-          <li class="cards">
-            <div class="cardContent">
+          <li class="card">
+            <article class="card__inner" aria-labelledby="titleBook">
               <img
                 src="./assets/images/Roube como um artista.png"
-                alt="Livro Roube como um artista"
+                alt="Capa do livro Roube como um artista"
               />
               <div class="bookCard">
                 <div class="title">
-                  <h2 class="title-book">Roube como um artista</h2>
+                  <h2 id="titleBook" class="title-book">
+                    Roube como um artista
+                  </h2>
                   <p class="author">Austin Kleon</p>
                 </div>
+
                 <div class="description">
-                  <p class="stats-book done">Lido</p>
-                  <br>
-                  <p class="stars" data-rating="4"></p>
+                  <p class="stats-book done" aria-label="Status: Lido">Lido</p>
+
+                  <div
+                    class="stars"
+                    role="img"
+                    aria-label="Avaliação: 4 de 5"
+                    data-rating="4"
+                  ></div>
+
                   <p class="comment">
                     Maravilhoso, abre a mente! Difícil parar de ler.
                   </p>
                 </div>
               </div>
-            </div>
 
-            <div class="cardFooter">
-              <button class="edit-book">
-                <img src="./assets/icons/pen.svg" alt="Símbolo de editar" />
-                Editar
-              </button>
-              <button class="delete-book">
-                <img
-                  src="./assets/icons/trash-red-bright.svg"
-                  alt="Símbolo de excluir"
-                />
-                Excluir
-              </button>
-            </div>
+              <div class="cardFooter">
+                <button class="edit-book" type="button">
+                  <img src="./assets/icons/pen.svg" alt="Símbolo de editar" />
+                  Editar
+                </button>
+                <button class="delete-book" type="button">
+                  <img
+                    src="./assets/icons/trash-red-bright.svg"
+                    alt="Símbolo de excluir"
+                  />
+                  Excluir
+                </button>
+              </div>
+            </article>
           </li>
 
-          <li class="cards">
-            <div class="cardContent">
+          <li class="card">
+            <article class="card__inner" aria-labelledby="titleBook">
               <img
                 src="./assets/images/Entendendo Algoritmos.png"
-                alt="Livro Entendendo Algoritmos"
+                alt="Capa do livro Entendendo Algoritmos"
               />
               <div class="bookCard">
                 <div class="title">
-                  <h2 class="title-book">Entendendo Algoritmos</h2>
+                  <h2 id="titleBook" class="title-book">
+                    Entendendo Algoritmos
+                  </h2>
                   <p class="author">Aditya Y. Bhargava</p>
                 </div>
+
                 <div class="description">
-                  <p class="stats-book inProgress">Lendo</p>
-                  <br>
-                  <p class="stars" data-rating="4"></p>
+                  <p class="stats-book inProgress" aria-label="Status: Lendo">
+                    Lendo
                   </p>
-                  <p class="comment">Comment.</p>
+
+                  <div
+                    class="stars"
+                    role="img"
+                    aria-label="Avaliação: 4 de 5"
+                    data-rating="4"
+                  ></div>
+
+                  <p class="comment">No comment.</p>
                 </div>
               </div>
-            </div>
 
-            <div class="cardFooter">
-              <button class="edit-book">
-                <img src="./assets/icons/pen.svg" alt="Símbolo de editar" />
-                Editar
-              </button>
-              <button class="delete-book">
-                <img
-                  src="./assets/icons/trash-red-bright.svg"
-                  alt="Símbolo de excluir"
-                />
-                Excluir
-              </button>
-            </div>
+              <div class="cardFooter">
+                <button class="edit-book" type="button">
+                  <img src="./assets/icons/pen.svg" alt="Símbolo de editar" />
+                  Editar
+                </button>
+                <button class="delete-book" type="button">
+                  <img
+                    src="./assets/icons/trash-red-bright.svg"
+                    alt="Símbolo de excluir"
+                  />
+                  Excluir
+                </button>
+              </div>
+            </article>
           </li>
 
-          <li class="cards">
-            <div class="cardContent">
+          <li class="card">
+            <article class="card__inner" aria-labelledby="titleBook">
               <img
                 src="./assets/images/The Pragmatic Programmer.png"
-                alt="Livro The Pragmatic Programmer"
+                alt="Capa do livro The Pragmatic Programmer"
               />
               <div class="bookCard">
                 <div class="title">
-                  <h2 class="title-book">The Pragmatic Programmer</h2>
+                  <h2 id="titleBook" class="title-book">
+                    The Pragmatic Programmer
+                  </h2>
                   <p class="author">David Thomas, Andrew Hunt</p>
                 </div>
+
                 <div class="description">
-                  <p class="stats-book default">Quero ler</p>
-                  <br>
-                  <p class="stars" data-rating="4"></p>
+                  <p class="stats-book default" aria-label="Status: Quero ler">
+                    Quero ler
                   </p>
-                  <p class="comment">Comment.</p>
+
+                  <div
+                    class="stars"
+                    role="img"
+                    aria-label="Avaliação: 4 de 5"
+                    data-rating="4"
+                  ></div>
+
+                  <p class="comment">No comment.</p>
                 </div>
               </div>
-            </div>
 
-            <div class="cardFooter">
-              <button class="edit-book">
-                <img src="./assets/icons/pen.svg" alt="Símbolo de editar" />
-                Editar
-              </button>
-              <button class="delete-book">
-                <img
-                  src="./assets/icons/trash-red-bright.svg"
-                  alt="Símbolo de excluir"
-                />
-                Excluir
-              </button>
-            </div>
+              <div class="cardFooter">
+                <button class="edit-book" type="button">
+                  <img src="./assets/icons/pen.svg" alt="Símbolo de editar" />
+                  Editar
+                </button>
+                <button class="delete-book" type="button">
+                  <img
+                    src="./assets/icons/trash-red-bright.svg"
+                    alt="Símbolo de excluir"
+                  />
+                  Excluir
+                </button>
+              </div>
+            </article>
           </li>
 
-          <li class="cards">
-            <div class="cardContent">
+          <li class="card">
+            <article class="card__inner" aria-labelledby="titleBook">
               <img
                 src="./assets/images/JavaScript O Guia Definitivo.png"
-                alt="Livro JavaScript O Guia Definitivo"
+                alt="Capa do livro JavaScript O Guia Definitivo"
               />
               <div class="bookCard">
                 <div class="title">
-                  <h2 class="title-book">JavaScript O Guia Definitivo</h2>
+                  <h2 id="titleBook" class="title-book">
+                    JavaScript O Guia Definitivo
+                  </h2>
                   <p class="author">David Flanagan</p>
                 </div>
+
                 <div class="description">
-                  <p class="stats-book inProgress">Lendo</p>
-                  <br>
-                  <p class="stars" data-rating="4"></p>
+                  <p class="stats-book inProgress" aria-label="Status: Lendo">
+                    Lendo
                   </p>
-                  <p class="comment">Comment.</p>
+
+                  <div
+                    class="stars"
+                    role="img"
+                    aria-label="Avaliação: 4 de 5"
+                    data-rating="4"
+                  ></div>
+
+                  <p class="comment">No comment.</p>
                 </div>
               </div>
-            </div>
 
-            <div class="cardFooter">
-              <button class="edit-book">
-                <img src="./assets/icons/pen.svg" alt="Símbolo de editar" />
-                Editar
-              </button>
-              <button class="delete-book">
-                <img
-                  src="./assets/icons/trash-red-bright.svg"
-                  alt="Símbolo de excluir"
-                />
-                Excluir
-              </button>
-            </div>
+              <div class="cardFooter">
+                <button class="edit-book" type="button">
+                  <img src="./assets/icons/pen.svg" alt="Símbolo de editar" />
+                  Editar
+                </button>
+                <button class="delete-book" type="button">
+                  <img
+                    src="./assets/icons/trash-red-bright.svg"
+                    alt="Símbolo de excluir"
+                  />
+                  Excluir
+                </button>
+              </div>
+            </article>
           </li>
 
-          <li class="cards">
-            <div class="cardContent">
+          <li class="card">
+            <article class="card__inner" aria-labelledby="titleBook">
               <img
                 src="./assets/images/Cracking the Coding Interview.png"
-                alt="Livro Cracking the Coding Interview"
+                alt="Capa do livro Cracking the Coding Interview"
               />
               <div class="bookCard">
                 <div class="title">
-                  <h2 class="title-book">Cracking the Coding Interview</h2>
+                  <h2 id="titleBook" class="title-book">
+                    Cracking the Coding Interview
+                  </h2>
                   <p class="author">Gayle Laakmann McDowell</p>
                 </div>
+
                 <div class="description">
-                  <p class="stats-book default">Quero ler</p>
-                  <br>
-                  <p class="stars" data-rating="4"></p>
+                  <p class="stats-book default" aria-label="Status: Quero ler">
+                    Quero ler
                   </p>
-                  <p class="comment">Comment.</p>
+
+                  <div
+                    class="stars"
+                    role="img"
+                    aria-label="Avaliação: 4 de 5"
+                    data-rating="4"
+                  ></div>
+
+                  <p class="comment">No comment.</p>
                 </div>
               </div>
-            </div>
 
-            <div class="cardFooter">
-              <button class="edit-book">
-                <img src="./assets/icons/pen.svg" alt="Símbolo de editar" />
-                Editar
-              </button>
-              <button class="delete-book">
-                <img
-                  src="./assets/icons/trash-red-bright.svg"
-                  alt="Símbolo de excluir"
-                />
-                Excluir
-              </button>
-            </div>
+              <div class="cardFooter">
+                <button class="edit-book" type="button">
+                  <img src="./assets/icons/pen.svg" alt="Símbolo de editar" />
+                  Editar
+                </button>
+                <button class="delete-book" type="button">
+                  <img
+                    src="./assets/icons/trash-red-bright.svg"
+                    alt="Símbolo de excluir"
+                  />
+                  Excluir
+                </button>
+              </div>
+            </article>
           </li>
         </ul>
       </section>
