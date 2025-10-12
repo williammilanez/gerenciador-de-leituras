@@ -1,0 +1,368 @@
+/* Header */
+/* Header principal */
+header {
+  padding: 3.2rem 1.6rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  line-height: 2.4rem;
+}
+
+/* Topo do header: logo + botão */
+#header-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  max-width: 36rem;
+  margin-bottom: 2.4rem;
+  padding: 0.2rem 0;
+  gap: 0 2.4rem;
+  flex-wrap: nowrap;
+}
+
+/* Logo: ícone + texto */
+#logo {
+  display: flex;
+  align-items: center;
+  gap: 1.2rem;
+  padding: 0.4rem 0;
+  flex: 1;
+  min-width: 0;
+}
+
+#logo img {
+  width: 3.2rem;
+  height: 3.2rem;
+}
+
+#logo p {
+  font: var(--font-body-md);
+  color: var(--color-gray-500);
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+/* Botão adicionar livro */
+#add-book {
+  display: flex;
+  align-items: center;
+  gap: 1.2rem;
+  padding: 0.8rem 1.6rem;
+  border-radius: 0.8rem;
+  background-color: var(--color-navy-low);
+  color: var(--color-white);
+  font: var(--font-action);
+  white-space: nowrap;
+  cursor: pointer;
+}
+
+#add-book img {
+  width: 1.6rem;
+  height: 1.6rem;
+}
+
+#add-book:hover {
+  background-color: var(--color-navy);
+  box-shadow: 0 0.4rem 0.8rem rgba(0, 0, 0, 0.1);
+  transition: all 0.2s ease;
+}
+
+/* Estatísticas de leitura */
+#stats {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 1fr 1fr;
+  gap: 1.6rem;
+  width: 100%;
+  max-width: 36rem;
+}
+
+/* Card individual de estatística */
+.stat-card {
+  display: flex;
+  flex-direction: column;
+  align-items: left;
+  justify-content: center;
+  padding: 1.6rem;
+  border: 0.1rem solid var(--color-gray-200);
+  border-radius: 0.8rem;
+  flex: 1;
+}
+
+/* Número da estatística */
+.stat-number {
+  font: var(--font-heading-xl);
+  color: var(--color-gray-500);
+}
+
+/* Texto/label da estatística */
+.stat-label {
+  font: var(--font-body-md);
+  color: var(--color-gray-400);
+}
+
+/* Main */
+/* Filtro de busca */
+#filter {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  width: 100%;
+  max-width: 36rem;
+  margin: 0 auto 2.4rem auto;
+  padding: 1.6rem 0;
+  gap: 1.2rem;
+}
+
+/* Linha de pesquisa */
+.search-row {
+  display: flex;
+  align-items: center;
+  gap: 1.2rem;
+  width: 100%;
+}
+
+#filter img {
+  width: 2.4rem;
+  height: 2.4rem;
+}
+
+#search-input {
+  flex: 1;
+  font: var(--font-body-md);
+  color: var(--color-gray-400);
+  border: 0.1rem solid var(--color-gray-200);
+  border-radius: 0.8rem;
+  background-color: var(--color-gray-100);
+
+  background-image: url("../assets/icons/search-gray-400.svg");
+  background-repeat: no-repeat;
+  background-position: 1.2rem center;
+  background-size: 1.8rem;
+
+  padding: 0.8rem 1.2rem 0.8rem 4rem;
+}
+
+/* Seletor do filtro */
+#search-filter {
+  width: 100%;
+  font: var(--font-body-md);
+  padding: 0.8rem 1.2rem;
+  border: 0.1rem solid var(--color-gray-200);
+  border-radius: 0.8rem;
+  background: var(--color-gray-100);
+  color: var(--color-gray-500);
+  cursor: pointer;
+}
+
+/* Lista de cards de livros */
+.cards-list {
+  display: flex;
+  flex-direction: column;
+  gap: 2.4rem;
+  width: 100%;
+  max-width: 36rem;
+  margin: 0 auto;
+  padding: 0;
+  list-style: none;
+}
+
+/* Card de livro */
+.cards {
+  display: flex;
+  flex-direction: column;
+  background: var(--color-white);
+  border-radius: 1.2rem;
+  box-shadow: 0 0.2rem 0.8rem rgba(0, 0, 0, 0.04);
+  padding: 2.4rem 1.6rem;
+  gap: 1.2rem;
+  border: 0.1rem solid var(--color-gray-200);
+  margin-bottom: 2.5rem;
+}
+
+/* Conteúdo do card */
+.cardContent {
+  display: flex;
+  flex-direction: column; /* Altera para coluna */
+  align-items: flex-start;
+  gap: 1.2rem;
+  margin-bottom: 2.4rem;
+}
+
+/* Imagem do livro */
+.cardContent img {
+  width: 100%;
+  max-width: 100%;
+  height: auto;
+  border-radius: 0.8rem;
+  box-shadow: 0 0.1rem 0.4rem rgba(0, 0, 0, 0.06);
+  align-self: stretch;
+  margin-bottom: 0.8rem;
+}
+
+/* Informações do livro */
+.bookCard {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0.4rem;
+  flex: 1;
+}
+
+/* Título do livro */
+.title-book {
+  font: var(--font-heading-md);
+  color: var(--color-gray-500);
+  margin-bottom: 0.2rem;
+  text-align: left;
+}
+
+/* Autor do livro */
+.author {
+  font: var(--font-body-md);
+  color: var(--color-gray-400);
+  margin-bottom: 0.8rem;
+  text-align: left;
+}
+
+/* Status do livro */
+.stats-book {
+  display: inline-block;
+  font: var(--font-badge);
+  border-radius: 0.8rem;
+  margin-bottom: 0.8rem;
+  text-align: left;
+  padding: 0.4rem 0.8rem;
+}
+
+/* Lido/done = verde */
+.stats-book.done {
+  color: var(--color-accent-green-base);
+  background-color: var(--color-accent-green-light);
+}
+
+/* Quero ler/default = azul */
+.stats-book.default {
+  color: var(--color-accent-blue-base);
+  background-color: var(--color-accent-blue-light);
+}
+
+/* Lendo/inProgress = amarelo */
+.stats-book.inProgress {
+  color: var(--color-accent-yellow-base);
+  background-color: var(--color-accent-yellow-light);
+}
+
+/* Estrelas */
+.stars {
+  display: inline-block;
+  position: relative;
+  width: 10rem; /* 5 estrelas de 2rem */
+  height: 2rem;
+  background: url("../assets/icons/star-empty.svg") repeat-x;
+  background-size: 2rem;
+}
+
+/* camada de estrelas preenchidas */
+.stars::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  background: url("../assets/icons/star-fill.svg") repeat-x;
+  background-size: 2rem;
+  width: 0%;
+}
+
+/* preencher proporcionalmente à nota */
+.stars[data-rating="1"]::before {
+  width: 20%;
+}
+.stars[data-rating="2"]::before {
+  width: 40%;
+}
+.stars[data-rating="3"]::before {
+  width: 60%;
+}
+.stars[data-rating="4"]::before {
+  width: 80%;
+}
+.stars[data-rating="5"]::before {
+  width: 100%;
+}
+
+/* Comentários */
+.comment {
+  font: var(--font-body-sm);
+  color: var(--color-gray-400);
+  margin: 0.8rem 0 0;
+  text-align: left;
+}
+
+/* Rodapé do card: botões lado a lado, alinhados à direita */
+.cardFooter {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  max-width: 36rem;
+
+  gap: 0.8rem;
+  flex-wrap: nowrap;
+}
+
+/* Botão editar livro */
+.edit-book {
+  display: flex;
+  align-items: center;
+  gap: 1.2rem;
+  padding: 0.8rem 1.6rem;
+  border-radius: 0.8rem;
+  background-color: var(--color-white);
+  color: var(--color-gray-500);
+  font: var(--font-action);
+  white-space: nowrap;
+  border: none;
+  cursor: pointer;
+  width: 100%;
+  border: 0.1rem solid var(--color-gray-200);
+}
+
+.edit-book img {
+  width: 1.6rem;
+  height: 1.6rem;
+}
+
+/* Botão excluir livro */
+.delete-book {
+  display: flex;
+  align-items: center;
+  gap: 1.2rem;
+  padding: 0.8rem 1.6rem;
+  border-radius: 0.8rem;
+  background-color: var(--color-white);
+  color: var(--color-accent-red-bright);
+  font: var(--font-action);
+  white-space: nowrap;
+  border: none;
+  cursor: pointer;
+  width: 100%;
+  border: 0.1rem solid var(--color-gray-200);
+}
+
+.delete-book img {
+  width: 1.6rem;
+  height: 1.6rem;
+}
+
+/* Hover dos botões */
+.edit-book:hover,
+.delete-book:hover {
+  background-color: var(--color-gray-100);
+  border-color: var(--color-gray-300);
+  box-shadow: 0 0.2rem 0.6rem rgba(0, 0, 0, 0.05);
+  transition: all 0.2s ease;
+}
