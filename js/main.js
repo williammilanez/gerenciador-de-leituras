@@ -284,11 +284,9 @@ if (form) {
       comment: (data.comment || "").trim(),
     };
 
-    // validações simples
-    if (!bookObj.title || !bookObj.author) {
-      // foco no primeiro campo faltante
-      if (!bookObj.title) form.elements["title"].focus();
-      else form.elements["author"].focus();
+    // validações usando validação nativa do HTML
+    if (!form.reportValidity()) {
+      // se reportValidity retornar false, o navegador mostra a mensagem
       return;
     }
 
@@ -336,36 +334,191 @@ function init() {
 
 init();
 
-const starsInput = document.querySelector(".stars-input");
-const starsOverlay = starsInput.querySelector(".stars-overlay");
-const starRadios = starsInput.querySelectorAll("input[name='rating']");
+// ======== Rating interativo (estrelas) ========
+function initStarsControl() {
+  const starsControl = document.querySelector(".stars-control");
+  if (!starsControl) return;
 
-function updateStars(rating) {
-  starsOverlay.style.width = `${rating * 20}%`; // 1 estrela = 20%
+  const starsVisual = starsControl.querySelector(".stars-visual");
+  const stars = Array.from(starsVisual.querySelectorAll(".star"));
+  const radios = Array.from(starsControl.querySelectorAll(".rating-radio"));
+  const clearBtn = starsControl.querySelector(".clear-rating");
+
+  // Mantém o rating atual localmente (0..5)
+  let currentRating = 0;
+
+  // Helpers
+  function setRating(r) {
+    currentRating = Math.max(0, Math.min(5, Number(r) || 0));
+    // marcar rádios
+    const radioToCheck = starsControl.querySelector(
+      `.rating-radio[value="${currentRating}"]`
+    );
+    if (radioToCheck) radioToCheck.checked = true;
+    // atualizar visual
+    updateVisual();
+  }
+
+  function updateVisual() {
+    stars.forEach((s) => {
+      const v = Number(s.dataset.value);
+      if (v <= currentRating) s.classList.add("filled");
+      else s.classList.remove("filled");
+    });
+  }
+
+  function clearRating() {
+    currentRating = 0;
+    const r0 = starsControl.querySelector('.rating-radio[value="0"]');
+    if (r0) r0.checked = true;
+    updateVisual();
+  }
+
+  // Inicializa (valor vindo do radio se houver)
+  const checked = starsControl.querySelector(".rating-radio:checked");
+  if (checked) {
+    currentRating = Number(checked.value) || 0;
+    updateVisual();
+  } else {
+    clearRating();
+  }
+
+  // Eventos: hover e click nas estrelas
+  stars.forEach((starElem) => {
+    const value = Number(starElem.dataset.value);
+
+    starElem.addEventListener("mousemove", (e) => {
+      // hover preview: preenche até a estrela sobre a qual o mouse está
+      stars.forEach((s) => {
+        const sv = Number(s.dataset.value);
+        if (sv <= value) s.classList.add("filled");
+        else s.classList.remove("filled");
+      });
+    });
+
+    starElem.addEventListener("mouseleave", () => {
+      // restaurar para o valor selecionado
+      updateVisual();
+    });
+
+    starElem.addEventListener("click", () => {
+      // define rating e marca o radio correspondente
+      setRating(value);
+    });
+
+    // keyboard accessibility: allow Enter/Space to set rating when focused
+    starElem.tabIndex = 0;
+    starElem.addEventListener("keydown", (ev) => {
+      if (ev.key === "Enter" || ev.key === " ") {
+        ev.preventDefault();
+        setRating(value);
+      }
+      // Left/Right to navigate
+      if (ev.key === "ArrowLeft") {
+        ev.preventDefault();
+        const next = Math.max(0, currentRating - 1);
+        setRating(next);
+      }
+      if (ev.key === "ArrowRight") {
+        ev.preventDefault();
+        const next = Math.min(5, currentRating + 1);
+        setRating(next);
+      }
+    });
+  });
+
+  // limpar
+  clearBtn.addEventListener("click", () => {
+    clearRating();
+    // garantir foco no primeiro campo (opcional)
+    // form.elements['title'].focus();
+  });
+
+  // Expor funções para uso externo (populate/edit)
+  return {
+    setRating,
+    clearRating,
+    getRating: () => currentRating,
+    refreshFromForm: () => {
+      const checked = starsControl.querySelector(".rating-radio:checked");
+      if (checked) setRating(Number(checked.value) || 0);
+      else clearRating();
+    },
+  };
 }
 
-// Atualiza quando clica
-starRadios.forEach((radio, index) => {
-  radio.addEventListener("change", () => {
-    updateStars(index + 1);
+// Criar instância (uma só, pois há apenas um modal)
+const starsController = initStarsControl();
+
+// ===== Integrar com form reset / populate =====
+// Quando abrimos o modal para adicionar (no handler de addBookBtn click) já chamamos form.reset()
+// Após um reset (ou ao abrir modal) queremos garantir visual consistente
+if (form) {
+  // Ao resetar manualmente, atualizar visual
+  form.addEventListener("reset", () => {
+    // espera microtick para que os radios sejam realmente resetados
+    setTimeout(() => {
+      if (starsController) starsController.refreshFromForm();
+    }, 0);
   });
-});
 
-// Atualiza no hover
-starsInput.addEventListener("mousemove", (e) => {
-  const rect = starsInput.getBoundingClientRect();
-  const offsetX = e.clientX - rect.left;
-  const hoverRating = Math.ceil((offsetX / rect.width) * 5);
-  starsOverlay.style.width = `${hoverRating * 20}%`;
-});
+  // Ao popular o form para edição (quando populateFormForEdit é chamado) os radios já são marcados
+  // então forçamos refresh no controller (às vezes populateFormForEdit define antes do initStarsControl)
+  // Para garantir, chamamos refresh após um pequeno delay quando modal é aberto para edição.
+}
 
-starsInput.addEventListener("mouseleave", () => {
-  const selected = document.querySelector(
-    ".stars-input input[name='rating']:checked"
-  );
-  if (selected) {
-    updateStars(Number(selected.value));
-  } else {
-    starsOverlay.style.width = "0%";
+// Ao abrir modal (adicionar ou editar) — garantir que estrelas reflitam o estado
+const originalOpenModal = openModal;
+function openModalWithStars() {
+  originalOpenModal();
+  // microtick para garantir que form radio states estejam prontos
+  setTimeout(() => {
+    if (starsController) starsController.refreshFromForm();
+    // also ensure scroll inside modal places first input into view
+    const firstControl = modal.querySelector("input, select, textarea, button");
+    if (firstControl) firstControl.focus();
+  }, 10);
+}
+// substituir referência de openModal por esta nova função usada nos event listeners:
+if (addBookBtn) {
+  // remove old listener and add new one safely
+  addBookBtn.replaceWith(addBookBtn.cloneNode(true));
+  // rebind selector because node changed
+  const newAddBtn = document.getElementById("add-book");
+  newAddBtn.addEventListener("click", () => {
+    clearEditingFlag();
+    form.reset();
+    openModalWithStars();
+  });
+}
+
+// Também garantir que quando populateFormForEdit é chamado, o controller seja atualizado
+function populateFormForEdit(book) {
+  if (!form) return;
+  form.elements["title"].value = book.title || "";
+  form.elements["author"].value = book.author || "";
+  form.elements["image"]
+    ? (form.elements["image"].value = book.image || "")
+    : null;
+  form.elements["status"].value = book.status || "quero-ler";
+
+  // marcar radio de rating (se existir)
+  const rating = Number(book.rating) || 0;
+  const radio = form.querySelector(`.rating-radio[value="${rating}"]`);
+  if (radio) radio.checked = true;
+  else {
+    const r0 = form.querySelector('.rating-radio[value="0"]');
+    if (r0) r0.checked = true;
   }
-});
+
+  form.elements["comment"].value = book.comment || "";
+
+  // armazenar o id do book a ser editado (para usar no submit)
+  form.dataset.editingId = book.id;
+
+  // atualizar visual das estrelas
+  if (starsController) starsController.refreshFromForm();
+
+  // abrir modal
+  openModalWithStars();
+}

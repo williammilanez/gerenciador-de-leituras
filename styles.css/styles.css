@@ -66,12 +66,11 @@ header {
 
 #add-book:hover {
   background-color: var(--color-navy);
-  box-shadow: 0 0.4rem 0.8rem rgba(0, 0, 0, 0.1);
   transition: all 0.2s ease;
 }
 
 button:focus {
-  outline: 1px solid Highlight;
+  outline: 1px solid var(--color-navy);
   outline-offset: 1px;
 }
 

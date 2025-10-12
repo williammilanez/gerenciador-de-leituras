@@ -4,9 +4,9 @@
   inset: 0;
   display: grid;
   place-items: center;
-  background: rgba(0, 0, 0, 0.4);
+  background: var(--color-overlay);
   z-index: 1000;
-  padding: 1.6rem;
+  padding: 2.4rem;
   box-sizing: border-box;
   overflow-y: auto; /* permite scroll quando o conteúdo é maior que a tela */
 }
@@ -19,24 +19,24 @@
 #book-form-modal .book-form {
   width: 100%;
   max-width: 520px;
-  background: var(--color-white, #fff);
+  background: var(--color-white);
   border-radius: 1.2rem;
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+  box-shadow: 0 10px 30px var(--color-overlay);
   padding: 2rem;
   box-sizing: border-box;
   display: flex;
   flex-direction: column;
-  gap: 1.6rem;
+  gap: 1.2rem;
   max-height: 90vh; /* limita altura do modal */
   overflow-y: auto; /* scroll interno */
 }
 
 /* ===== Título do Form ===== */
 #book-form h2 {
-  font: var(--font-heading-lg, 1.6rem/2rem sans-serif);
-  color: var(--color-gray-500, #333);
+  font: var(--font-heading-lg);
+  color: var(--color-gray-500);
   margin: 0;
-  text-align: center;
+  text-align: left;
 }
 
 /* ===== Linhas do Form ===== */
@@ -47,19 +47,19 @@
 }
 
 .form-row label {
-  font: var(--font-body-md, 1rem/1.5rem sans-serif);
-  color: var(--color-gray-400, #555);
+  font: var(--font-body-md);
+  color: var(--color-gray-500);
 }
 
 .form-row input,
 .form-row select,
 .form-row textarea {
-  font: var(--font-body-md, 1rem/1.5rem sans-serif);
+  font: var(--font-body-md);
   padding: 0.8rem 1rem;
-  border: 0.1rem solid var(--color-gray-200, #ccc);
+  border: 0.1rem solid var(--color-gray-100);
   border-radius: 0.8rem;
-  background-color: var(--color-gray-100, #f8f8f8);
-  color: var(--color-gray-500, #333);
+  background-color: var(--color-gray-100);
+  color: var(--color-gray-400);
   width: 100%;
   box-sizing: border-box;
 }
@@ -67,14 +67,18 @@
 .form-row input:focus,
 .form-row select:focus,
 .form-row textarea:focus {
-  outline: 2px solid var(--color-navy, #1a1a8c);
-  outline-offset: 2px;
+  outline: 1px solid var(--color-navy);
+  outline-offset: 1px;
+}
+
+.form-row select {
+  color: var(--color-gray-500);
 }
 
 /* ===== Optional ===== */
 .optional {
   font-size: 0.85rem;
-  color: var(--color-gray-300, #888);
+  color: var(--color-gray-300);
   font-style: italic;
 }
 
@@ -86,8 +90,8 @@
 }
 
 #rating-fieldset legend {
-  font: var(--font-body-md, 1rem/1.5rem sans-serif);
-  color: var(--color-gray-400, #555);
+  font: var(--font-body-md);
+  color: var(--color-gray-500);
   margin-bottom: 0.4rem;
 }
 
@@ -123,7 +127,21 @@
   background-image: url("../assets/icons/star-fill.svg");
 }
 
+.rating-radio {
+  display: none; /* escondemos os radios visuais, mas continuam no form */
+}
+
 /* ===== Estrelas interativas ===== */
+.star {
+  width: 2.4rem; /* largura da estrela */
+  height: 2.4rem; /* altura da estrela */
+  display: inline-block;
+  background-image: url("../assets/icons/star-empty.svg");
+  background-repeat: no-repeat;
+  background-size: contain;
+  cursor: pointer;
+}
+
 .stars-input {
   position: relative;
   width: 10rem; /* 5 estrelas de 2rem */
@@ -157,6 +175,40 @@
   /* handled via JS para a largura proporcional ao hover */
 }
 
+.stars-control {
+  display: flex;
+  align-items: center;
+  gap: 0.8rem; /* espaço entre visual e botão limpar */
+  column-gap: 0.8rem;
+}
+
+.stars-visual {
+  display: inline-flex;
+  gap: 0.6rem; /* espaçamento entre estrelas — ajustável */
+  align-items: center;
+  user-select: none;
+}
+
+.star.filled {
+  background-image: url("../assets/icons/star-fill.svg");
+}
+
+.clear-rating {
+  background: transparent;
+  border: none;
+  color: var(--color-gray-500);
+  font: var(--font-body-sm);
+  cursor: pointer;
+  padding: 0.2rem 0.4rem;
+  border-radius: 0.6rem;
+}
+
+.clear-rating:hover,
+.clear-rating:focus {
+  background: var(--color-gray-100);
+  outline: none;
+}
+
 /* Botões do hover/click serão controlados por JS */
 
 /* ===== Textarea ===== */
@@ -174,7 +226,7 @@ textarea {
 }
 
 .btn {
-  font: var(--font-action, 1rem/1.5rem sans-serif);
+  font: var(--font-action);
   padding: 0.8rem 1.6rem;
   border-radius: 0.8rem;
   cursor: pointer;
@@ -184,22 +236,22 @@ textarea {
 }
 
 .btn-primary {
-  background-color: var(--color-navy-low, #1a1a8c);
-  color: var(--color-white, #fff);
+  background-color: var(--color-navy-low);
+  color: var(--color-white);
 }
 
 .btn-primary:hover {
-  background-color: var(--color-navy, #000066);
+  background-color: var(--color-navy);
 }
 
 .btn-secondary {
-  background-color: var(--color-gray-100, #f8f8f8);
-  color: var(--color-gray-500, #333);
-  border: 0.1rem solid var(--color-gray-300, #ccc);
+  background-color: var(--color-gray-100);
+  color: var(--color-gray-500);
+  border: 0.1rem solid var(--color-gray-300);
 }
 
 .btn-secondary:hover {
-  background-color: var(--color-gray-200, #e0e0e0);
+  background-color: var(--color-gray-200);
 }
 
 /* ===== Bloquear scroll no body quando modal aberto ===== */

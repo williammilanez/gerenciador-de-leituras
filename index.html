@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
   <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
 
     <title>Gerenciador de Leituras</title>
 
@@ -10,9 +10,7 @@
       name="description"
       content="Aplicativo para organizar e acompanhar suas leituras. Nele, você poderá registrar os livros que já leu, os que está lendo e os que deseja ler no futuro. Além disso, será possível adicionar novos títulos à sua lista e escrever reviews sobre os livros concluídos."
     />
-
     <meta name="author" content="William Milanez" />
-
     <meta name="theme-color" content="#d1d5dc" />
 
     <link
@@ -23,22 +21,23 @@
 
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-
     <link
       href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap"
       rel="stylesheet"
     />
 
-    <link rel="stylesheet" href="./css/index.css" />
+    <link rel="stylesheet" href="./styles.css/index.css" />
   </head>
 
   <body>
     <header>
-      <div id="header-top">
-        <div id="logo">
+      <div id="header-top" class="container">
+        <div id="logo" class="brand">
           <img
             src="./assets/icons/open-book-navy-low.svg"
             alt="Ícone: livro aberto"
+            width="40"
+            height="40"
           />
           <h1 class="heading">Minha Biblioteca</h1>
         </div>
@@ -48,61 +47,74 @@
           type="button"
           aria-haspopup="dialog"
           aria-controls="book-form-modal"
+          aria-expanded="false"
         >
           <img src="./assets/icons/plus-white.svg" alt="" aria-hidden="true" />
           Adicionar livro
         </button>
       </div>
 
-      <section id="stats">
+      <section
+        id="stats"
+        aria-label="Estatísticas da biblioteca"
+        class="stats container"
+      >
         <div class="stat-card">
-          <div class="stat-number">5</div>
+          <div class="stat-number" id="stat-total">5</div>
           <div class="stat-label">Total</div>
         </div>
 
         <div class="stat-card">
-          <div class="stat-number">2</div>
+          <div class="stat-number" id="stat-want">2</div>
           <div class="stat-label">Quero ler</div>
         </div>
 
         <div class="stat-card">
-          <div class="stat-number">2</div>
+          <div class="stat-number" id="stat-reading">2</div>
           <div class="stat-label">Lendo</div>
         </div>
 
         <div class="stat-card">
-          <div class="stat-number">1</div>
+          <div class="stat-number" id="stat-read">1</div>
           <div class="stat-label">Lidos</div>
         </div>
       </section>
     </header>
 
     <main>
-      <section id="filter" aria-label="Filtro de busca">
+      <section id="filter" aria-label="Filtro de busca" class="container">
         <div class="search-row">
           <label for="search-input" class="sr-only">Pesquisar livros</label>
           <input
             type="text"
             id="search-input"
+            name="search"
             placeholder="Buscar por título ou autor..."
+            autocomplete="off"
           />
         </div>
 
         <label for="search-filter" class="sr-only">Filtrar por status</label>
-        <select id="search-filter" name="search-filter">
-          <option value="todos-os-status">Todos os status</option>
+        <select
+          id="search-filter"
+          name="search-filter"
+          aria-label="Filtrar por status"
+        >
+          <option value="all">Todos os status</option>
           <option value="quero-ler">Quero ler</option>
           <option value="lendo">Lendo</option>
-          <option value="lidos">Lidos</option>
+          <option value="lido">Lidos</option>
         </select>
       </section>
 
-      <section id="books">
-        <ul class="cards-list">
-          <li class="card">
-            <article class="card__inner" aria-labelledby="titleBook">
+      <section id="books" class="container" aria-label="Lista de livros">
+        <!-- Use um template JS em vez de hardcode, mas deixo exemplos iniciais -->
+        <ul class="cards-list" role="list">
+          <!-- Exemplo de card (IDs únicos e aria-labelledby apontando para cada título) -->
+          <li class="card" role="listitem" data-id="1">
+            <article class="card__inner" aria-labelledby="firstBook">
               <img
-                src="./assets/images/Roube como um artista.png"
+                src="./assets/images/roube-como-um-artista.png"
                 alt="Capa do livro Roube como um artista"
               />
               <div class="bookCard">
@@ -121,7 +133,10 @@
                     role="img"
                     aria-label="Avaliação: 4 de 5"
                     data-rating="4"
-                  ></div>
+                  >
+                    <!-- texto protegido por CSS; fornece fallback visual -->
+                    <span aria-hidden="true">★★★★☆</span>
+                  </div>
 
                   <p class="comment">
                     Maravilhoso, abre a mente! Difícil parar de ler.
@@ -130,14 +145,23 @@
               </div>
 
               <div class="cardFooter">
-                <button class="edit-book" type="button">
-                  <img src="./assets/icons/pen.svg" alt="Símbolo de editar" />
+                <button
+                  class="edit-book"
+                  type="button"
+                  aria-label="Editar Roube como um artista"
+                >
+                  <img src="./assets/icons/pen.svg" alt="" aria-hidden="true" />
                   Editar
                 </button>
-                <button class="delete-book" type="button">
+                <button
+                  class="delete-book"
+                  type="button"
+                  aria-label="Excluir Roube como um artista"
+                >
                   <img
                     src="./assets/icons/trash-red-bright.svg"
-                    alt="Símbolo de excluir"
+                    alt=""
+                    aria-hidden="true"
                   />
                   Excluir
                 </button>
@@ -145,10 +169,10 @@
             </article>
           </li>
 
-          <li class="card">
-            <article class="card__inner" aria-labelledby="titleBook">
+          <li class="card" role="listitem" data-id="2">
+            <article class="card__inner" aria-labelledby="secondBook">
               <img
-                src="./assets/images/Entendendo Algoritmos.png"
+                src="./assets/images/entendendo-algoritmos.png"
                 alt="Capa do livro Entendendo Algoritmos"
               />
               <div class="bookCard">
@@ -169,21 +193,32 @@
                     role="img"
                     aria-label="Avaliação: 4 de 5"
                     data-rating="4"
-                  ></div>
+                  >
+                    <span aria-hidden="true">★★★★☆</span>
+                  </div>
 
                   <p class="comment">No comment.</p>
                 </div>
               </div>
 
               <div class="cardFooter">
-                <button class="edit-book" type="button">
-                  <img src="./assets/icons/pen.svg" alt="Símbolo de editar" />
+                <button
+                  class="edit-book"
+                  type="button"
+                  aria-label="Editar Entendendo Algoritmos"
+                >
+                  <img src="./assets/icons/pen.svg" alt="" aria-hidden="true" />
                   Editar
                 </button>
-                <button class="delete-book" type="button">
+                <button
+                  class="delete-book"
+                  type="button"
+                  aria-label="Excluir Entendendo Algoritmos"
+                >
                   <img
                     src="./assets/icons/trash-red-bright.svg"
-                    alt="Símbolo de excluir"
+                    alt=""
+                    aria-hidden="true"
                   />
                   Excluir
                 </button>
@@ -191,16 +226,16 @@
             </article>
           </li>
 
-          <li class="card">
-            <article class="card__inner" aria-labelledby="titleBook">
+          <li class="card" role="listitem" data-id="3">
+            <article class="card__inner" aria-labelledby="thirdBook">
               <img
-                src="./assets/images/The Pragmatic Programmer.png"
-                alt="Capa do livro The Pragmatic Programmer"
+                src="./assets/images/the-pragmatic-programmer.png"
+                alt="Capa do livro The Pragamatic Programmer"
               />
               <div class="bookCard">
                 <div class="title">
                   <h2 id="thirdBook" class="title-book">
-                    The Pragmatic Programmer
+                    The Pragamatic Programmer
                   </h2>
                   <p class="author">David Thomas, Andrew Hunt</p>
                 </div>
@@ -215,21 +250,32 @@
                     role="img"
                     aria-label="Avaliação: 4 de 5"
                     data-rating="4"
-                  ></div>
+                  >
+                    <span aria-hidden="true">★★★★☆</span>
+                  </div>
 
                   <p class="comment">No comment.</p>
                 </div>
               </div>
 
               <div class="cardFooter">
-                <button class="edit-book" type="button">
-                  <img src="./assets/icons/pen.svg" alt="Símbolo de editar" />
+                <button
+                  class="edit-book"
+                  type="button"
+                  aria-label="Editar Entendendo Algoritmos"
+                >
+                  <img src="./assets/icons/pen.svg" alt="" aria-hidden="true" />
                   Editar
                 </button>
-                <button class="delete-book" type="button">
+                <button
+                  class="delete-book"
+                  type="button"
+                  aria-label="Excluir Entendendo Algoritmos"
+                >
                   <img
                     src="./assets/icons/trash-red-bright.svg"
-                    alt="Símbolo de excluir"
+                    alt=""
+                    aria-hidden="true"
                   />
                   Excluir
                 </button>
@@ -237,22 +283,22 @@
             </article>
           </li>
 
-          <li class="card">
-            <article class="card__inner" aria-labelledby="titleBook">
+          <li class="card" role="listitem" data-id="4">
+            <article class="card__inner" aria-labelledby="fourthBook">
               <img
-                src="./assets/images/JavaScript O Guia Definitivo.png"
-                alt="Capa do livro JavaScript O Guia Definitivo"
+                src="./assets/images/javascript-o-guia-definitivo.png"
+                alt="Capa do livro JavaScript: O Guia Definitivo"
               />
               <div class="bookCard">
                 <div class="title">
                   <h2 id="fourthBook" class="title-book">
-                    JavaScript O Guia Definitivo
+                    JavaScript: O Guia Definitivo
                   </h2>
                   <p class="author">David Flanagan</p>
                 </div>
 
                 <div class="description">
-                  <p class="stats-book inProgress" aria-label="Status: Lendo">
+                  <p class="stats-book done" aria-label="Status: Lendo">
                     Lendo
                   </p>
 
@@ -261,21 +307,32 @@
                     role="img"
                     aria-label="Avaliação: 4 de 5"
                     data-rating="4"
-                  ></div>
+                  >
+                    <span aria-hidden="true">★★★★☆</span>
+                  </div>
 
                   <p class="comment">No comment.</p>
                 </div>
               </div>
 
               <div class="cardFooter">
-                <button class="edit-book" type="button">
-                  <img src="./assets/icons/pen.svg" alt="Símbolo de editar" />
+                <button
+                  class="edit-book"
+                  type="button"
+                  aria-label="Editar Entendendo Algoritmos"
+                >
+                  <img src="./assets/icons/pen.svg" alt="" aria-hidden="true" />
                   Editar
                 </button>
-                <button class="delete-book" type="button">
+                <button
+                  class="delete-book"
+                  type="button"
+                  aria-label="Excluir Entendendo Algoritmos"
+                >
                   <img
                     src="./assets/icons/trash-red-bright.svg"
-                    alt="Símbolo de excluir"
+                    alt=""
+                    aria-hidden="true"
                   />
                   Excluir
                 </button>
@@ -283,15 +340,15 @@
             </article>
           </li>
 
-          <li class="card">
-            <article class="card__inner" aria-labelledby="titleBook">
+          <li class="card" role="listitem" data-id="5">
+            <article class="card__inner" aria-labelledby="fifth">
               <img
-                src="./assets/images/Cracking the Coding Interview.png"
+                src="./assets/images/cracking-the-coding-interview.png"
                 alt="Capa do livro Cracking the Coding Interview"
               />
               <div class="bookCard">
                 <div class="title">
-                  <h2 id="fifthBook" class="title-book">
+                  <h2 id="fifth" class="title-book">
                     Cracking the Coding Interview
                   </h2>
                   <p class="author">Gayle Laakmann McDowell</p>
@@ -307,21 +364,32 @@
                     role="img"
                     aria-label="Avaliação: 4 de 5"
                     data-rating="4"
-                  ></div>
+                  >
+                    <span aria-hidden="true">★★★★☆</span>
+                  </div>
 
                   <p class="comment">No comment.</p>
                 </div>
               </div>
 
               <div class="cardFooter">
-                <button class="edit-book" type="button">
-                  <img src="./assets/icons/pen.svg" alt="Símbolo de editar" />
+                <button
+                  class="edit-book"
+                  type="button"
+                  aria-label="Editar Entendendo Algoritmos"
+                >
+                  <img src="./assets/icons/pen.svg" alt="" aria-hidden="true" />
                   Editar
                 </button>
-                <button class="delete-book" type="button">
+                <button
+                  class="delete-book"
+                  type="button"
+                  aria-label="Excluir Entendendo Algoritmos"
+                >
                   <img
                     src="./assets/icons/trash-red-bright.svg"
-                    alt="Símbolo de excluir"
+                    alt=""
+                    aria-hidden="true"
                   />
                   Excluir
                 </button>
@@ -331,42 +399,44 @@
         </ul>
       </section>
 
+      <!-- Dialog / modal do formulário (fechado por default com hidden) -->
       <div
         id="book-form-modal"
         role="dialog"
         aria-modal="true"
         aria-labelledby="book-form-title"
         hidden
+        tabindex="-1"
       >
         <form id="book-form" class="book-form" autocomplete="off" novalidate>
           <h2 id="book-form-title">Adicionar livro</h2>
 
           <div class="form-row">
-            <label for="book-title">Título</label>
+            <label for="book-title">Título *</label>
             <input
               id="book-title"
               name="title"
               type="text"
               placeholder="Digite o título do livro"
               required
+              aria-required="true"
             />
           </div>
 
           <div class="form-row">
-            <label for="book-author">Autor</label>
+            <label for="book-author">Autor *</label>
             <input
               id="book-author"
               name="author"
               type="text"
               placeholder="Digite o nome do autor"
               required
+              aria-required="true"
             />
           </div>
 
           <div class="form-row">
-            <label for="book-image"
-              >URL da Imagem <span class="optional">(opcional)</span></label
-            >
+            <label for="book-image">URL da Imagem</label>
             <input
               id="book-image"
               name="image"
@@ -386,25 +456,111 @@
 
           <fieldset class="form-row" id="rating-fieldset">
             <legend>Avaliação</legend>
+
             <div
-              class="stars-input"
+              class="stars-control"
               role="radiogroup"
               aria-labelledby="rating-fieldset"
             >
-              <input type="radio" name="rating" id="star1" value="1" />
-              <input type="radio" name="rating" id="star2" value="2" />
-              <input type="radio" name="rating" id="star3" value="3" />
-              <input type="radio" name="rating" id="star4" value="4" />
-              <input type="radio" name="rating" id="star5" value="5" />
+              <input
+                type="radio"
+                name="rating"
+                id="rating-0"
+                value="0"
+                checked
+                class="rating-radio"
+              />
+              <input
+                type="radio"
+                name="rating"
+                id="rating-1"
+                value="1"
+                class="rating-radio"
+              />
+              <input
+                type="radio"
+                name="rating"
+                id="rating-2"
+                value="2"
+                class="rating-radio"
+              />
+              <input
+                type="radio"
+                name="rating"
+                id="rating-3"
+                value="3"
+                class="rating-radio"
+              />
+              <input
+                type="radio"
+                name="rating"
+                id="rating-4"
+                value="4"
+                class="rating-radio"
+              />
+              <input
+                type="radio"
+                name="rating"
+                id="rating-5"
+                value="5"
+                class="rating-radio"
+              />
 
-              <div class="stars-overlay"></div>
+              <div class="stars-visual" aria-hidden="true">
+                <button
+                  type="button"
+                  class="star"
+                  data-value="1"
+                  aria-hidden="true"
+                >
+                  ★
+                </button>
+                <button
+                  type="button"
+                  class="star"
+                  data-value="2"
+                  aria-hidden="true"
+                >
+                  ★
+                </button>
+                <button
+                  type="button"
+                  class="star"
+                  data-value="3"
+                  aria-hidden="true"
+                >
+                  ★
+                </button>
+                <button
+                  type="button"
+                  class="star"
+                  data-value="4"
+                  aria-hidden="true"
+                >
+                  ★
+                </button>
+                <button
+                  type="button"
+                  class="star"
+                  data-value="5"
+                  aria-hidden="true"
+                >
+                  ★
+                </button>
+              </div>
+
+              <button
+                type="button"
+                class="clear-rating"
+                aria-label="Limpar avaliação"
+              >
+                Limpar
+              </button>
             </div>
           </fieldset>
 
           <div class="form-row">
-            <label for="book-comment"
-              >Comentário <span class="optional">(opcional)</span></label
-            >
+            <label for="book-comment">Comentário</label>
             <textarea
               id="book-comment"
               name="comment"
@@ -428,6 +584,9 @@
       <p>Footer</p>
     </footer>
 
+    <script src="./js/storage.js"></script>
+    <script src="./js/modal.js"></script>
+    <script src="./js/ui.js"></script>
     <script src="./js/main.js"></script>
   </body>
 </html>
