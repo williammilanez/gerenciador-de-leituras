@@ -140,6 +140,9 @@
   background-repeat: no-repeat;
   background-size: contain;
   cursor: pointer;
+
+  font-size: 0;
+  color: transparent;
 }
 
 .stars-input {

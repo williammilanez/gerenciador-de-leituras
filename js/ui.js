@@ -74,10 +74,11 @@
     const fallback = document.createElement("span");
     fallback.setAttribute("aria-hidden", "true");
     // fallback: preenchimento textual simples
-    const filledStars = "★".repeat(book.rating || 0);
-    const emptyStars = "☆".repeat(5 - (book.rating || 0));
+    const rating = Math.floor(Number(book.rating) || 0); // garante inteiro
+    const filledStars = "★".repeat(rating);
+    const emptyStars = "☆".repeat(5 - rating);
     fallback.textContent = filledStars + emptyStars;
-    starsDiv.appendChild(fallback);
+    starsDiv.dataset.rating = String(rating);
 
     const commentP = document.createElement("p");
     commentP.className = "comment";
@@ -166,7 +167,7 @@
     form.querySelector("#book-status").value = book.status || "quero-ler";
     form.querySelector("#book-comment").value = book.comment || "";
     // rating radios
-    const r = Math.max(0, Number(book.rating || 0));
+    const r = Math.floor(Math.max(0, Number(book.rating || 0)));
     const radio = form.querySelector(`#rating-${r}`);
     if (radio) radio.checked = true;
     Modal.updateStarsVisual(r);
@@ -190,7 +191,10 @@
       comment: form.querySelector("#book-comment").value.trim(),
       rating: (function () {
         const checked = form.querySelector('input[name="rating"]:checked');
-        return checked ? Number(checked.value) : 0;
+        let r = checked ? parseInt(checked.value, 10) : 0;
+        if (isNaN(r) || r < 0) r = 0;
+        if (r > 5) r = 5;
+        return r;
       })(),
     };
 

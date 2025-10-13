@@ -1,4 +1,5 @@
 // Inicializa a aplicação (carrega Storage/Modal/UI)
+
 (function (global) {
   document.addEventListener("DOMContentLoaded", () => {
     // --- Migração: garantir imagem default para livros sem capa ---

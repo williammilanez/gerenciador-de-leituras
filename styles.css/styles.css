@@ -274,13 +274,12 @@ button:focus {
 .stars {
   display: block;
   position: relative;
-  width: min(10rem, 100%);
+  width: 10rem; /* 5 estrelas x 2rem cada */
   height: 2rem;
   background: url("../assets/icons/star-empty.svg") repeat-x;
-  background-size: 2rem;
+  background-size: 2rem 100%;
 }
 
-/* Camada de estrelas preenchidas */
 .stars::before {
   content: "";
   position: absolute;
@@ -288,8 +287,8 @@ button:focus {
   left: 0;
   height: 100%;
   background: url("../assets/icons/star-fill.svg") repeat-x;
-  background-size: 2rem;
-  width: var(--rating-percent, 0%); /* default 0% */
+  background-size: 2rem 100%;
+  width: calc(var(--rating-percent, 0%) * 1); /* pode ajustar para % exato */
 }
 
 /* Preencher proporcionalmente à nota */
