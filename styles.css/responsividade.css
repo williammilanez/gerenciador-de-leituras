@@ -1,0 +1,146 @@
+/* ===== Desktop layout (4-col / header lado a lado / stats em linha) ===== */
+@media (min-width: 860px) {
+  /* Ajusta espaçamento geral do header e centraliza o conteúdo com mais largura */
+  header {
+    padding: 3.2rem 2.4rem;
+    align-items: center; /* mantém itens em linha no topo */
+  }
+
+  /* Topo do header: aumenta max-width e garante espaço-between entre logo e botão */
+  #header-top {
+    max-width: 1120px; /* largura do container desktop */
+    margin: 0 auto 2.4rem;
+    width: 100%;
+    justify-content: space-between; /* logo à esquerda, botão à direita */
+    gap: 0; /* remove gaps extras do mobile */
+    align-items: center;
+    flex-wrap: nowrap;
+  }
+
+  /* Força o logo a ocupar só o necessário e não embolar o botão */
+  #logo {
+    flex: 0 1 auto;
+    min-width: 0;
+    align-items: center;
+  }
+
+  /* Garante que o botão não cresça e fique no canto direito */
+  #add-book {
+    flex: 0 0 auto;
+    margin-left: auto;
+  }
+
+  /* ===== Stats: 4 em uma linha ===== */
+  #stats {
+    max-width: 1120px;
+    margin: 0 auto 2.4rem;
+    grid-template-columns: repeat(4, 1fr);
+    grid-template-rows: 1fr;
+    gap: 1.6rem;
+    width: 100%;
+  }
+
+  .stat-card {
+    /* mantém o conteúdo legível mas com padding levemente menor para desktop */
+    padding: 1.2rem;
+  }
+
+  /* ===== Filter: search-row ocupa a maior parte; search-filter fica ~200px na direita ===== */
+  #filter {
+    max-width: 1120px;
+    margin: 0 auto 2.4rem;
+    width: 100%;
+    padding: 0.8rem 0;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1.2rem;
+  }
+
+  /* Container que contém input + ícone (usa o restante do espaço) */
+  .search-row {
+    flex: 1 1 auto;
+    display: flex;
+    align-items: center;
+    gap: 1.2rem;
+    min-width: 0;
+  }
+
+  /* Input de pesquisa expande para ocupar todo o espaço disponível */
+  #search-input {
+    flex: 1 1 auto;
+    min-width: 0; /* importante para truncar em layouts estreitos */
+  }
+
+  /* Fixa a largura do select de filtro (aprox. 200px) e impede crescimento */
+  #search-filter {
+    flex: 0 0 200px; /* largura fixa ~200px */
+    max-width: 200px;
+    width: 200px;
+  }
+
+  /* ===== Cards: grid 4 colunas, mantendo a ordem e reduzindo tamanho ===== */
+  .cards-list {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1.6rem;
+    max-width: 1120px;
+    margin: 0 auto;
+    padding: 0;
+  }
+
+  .card {
+    /* reduz padding para caber 4 por linha e ficar visualmente equilibrado */
+    padding: 1.2rem;
+  }
+
+  /* Mantém a estrutura interna do card em coluna (como você pediu) */
+  .card__inner {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.8rem;
+  }
+
+  /* Ajuste da imagem para não ficar muito grande em cards pequenos */
+  .card__inner img {
+    width: 100%;
+    height: auto;
+    max-height: 320px; /* limita a altura para manter uniformidade das linhas */
+    object-fit: cover;
+    margin-bottom: 0.6rem;
+  }
+
+  /* Ajusta tipografia dos títulos/autores para caber melhor */
+  .title-book {
+    font-size: 1rem;
+  }
+  .author {
+    font-size: 0.9rem;
+  }
+
+  /* Footer dos cards — alinha botões à direita em desktop */
+  .cardFooter {
+    max-width: 1120px;
+    margin: 1rem auto 0;
+    justify-content: flex-end;
+  }
+
+  /* Botões: em desktop preferimos tamanho mínimo (não 100% width) */
+  .edit-book,
+  .delete-book {
+    width: auto;
+    padding: 0.6rem 1rem;
+  }
+
+  .cards-list .empty {
+    grid-column: 1 / -1; /* ocupa todas as 4 colunas */
+    text-align: center;
+    font: var(--font-body-md);
+    color: var(--color-gray-400);
+    background: none; /* remove fundo se herdar estilo de card */
+    border: none; /* garante que não pareça um card */
+    box-shadow: none;
+    padding: 1.6rem 0;
+  }
+}

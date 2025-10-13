@@ -426,6 +426,6 @@ main {
 
 .footer__link:hover,
 .footer__link:focus {
-  text-decoration: underline;
+  text-decoration: none;
   outline: none;
 }
