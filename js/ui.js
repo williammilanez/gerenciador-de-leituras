@@ -13,6 +13,7 @@
   };
   const searchInput = document.getElementById("search-input");
   const filterSelect = document.getElementById("search-filter");
+  const statsContainer = document.getElementById("stats");
 
   // Template de criação do card (DOM)
   function createCard(book) {
@@ -122,17 +123,34 @@
 
   function renderBooks(booksList) {
     const list = booksList || Storage.getBooks();
+    const listEl = document.querySelector(".cards-list");
+    const statsContainer = document.querySelector(".stats");
+
     listEl.innerHTML = "";
+
     if (!list.length) {
-      listEl.innerHTML =
-        '<p class="empty">Nenhum livro adicionado ainda. Comece adicionando seu primeiro livro!</p>';
-      updateStats(list);
+      const all = Storage.getBooks();
+      if (!all.length) {
+        listEl.innerHTML =
+          '<p class="empty">Nenhum livro adicionado ainda. Comece adicionando seu primeiro livro!</p>';
+      } else {
+        listEl.innerHTML =
+          '<p class="empty">Nenhum livro encontrado para os critérios informados.</p>';
+      }
+
+      updateStats([]);
+      if (statsContainer) statsContainer.style.display = "none";
       return;
     }
+
+    // se há resultados, mostra novamente os stats
+    if (statsContainer) statsContainer.style.display = "";
+
     list.forEach((book) => {
       const card = createCard(book);
       listEl.appendChild(card);
     });
+
     updateStats(list);
   }
 
@@ -188,21 +206,16 @@
     form.reset();
     delete form.dataset.editId; // remover flag de edição
 
-    // Resetar título e botão
+    // Resetar título e botão DO FORM (texto conforme pedido)
     const formTitle = form.querySelector(".form-title");
     const submitBtn = form.querySelector('button[type="submit"]');
-    if (formTitle) formTitle.textContent = "Adicionar livro";
+    if (formTitle) formTitle.textContent = "Adicionar Livro";
     if (submitBtn) submitBtn.textContent = "Adicionar";
 
     // Resetar rating visual
     const r0 = form.querySelector("#rating-0");
     if (r0) r0.checked = true;
     Modal.updateStarsVisual(0);
-
-    const addBookBtn = document.getElementById("add-book");
-    if (addBookBtn) {
-      addBookBtn.addEventListener("click", startAdd);
-    }
 
     // abrir modal
     Modal.open();
@@ -327,6 +340,12 @@
 
     // rating controls
     initRatingControls();
+
+    // linkar botão "Adicionar livro" ao startAdd
+    const addBookBtn = document.getElementById("add-book");
+    if (addBookBtn) {
+      addBookBtn.addEventListener("click", startAdd);
+    }
 
     // render inicial
     renderBooks();
