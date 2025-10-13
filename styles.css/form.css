@@ -173,11 +173,6 @@
   display: none;
 }
 
-/* Hover proporcional: quando passar o mouse, preenche da esquerda pra direita */
-.stars-input:hover .stars-overlay {
-  /* handled via JS para a largura proporcional ao hover */
-}
-
 .stars-control {
   display: flex;
   align-items: center;

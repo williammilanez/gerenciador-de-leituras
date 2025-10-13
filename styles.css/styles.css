@@ -394,3 +394,38 @@ main {
   color: var(--color-gray-400);
   text-align: center;
 }
+
+/* Footer */
+.footer {
+  background: var(--color-gray-200);
+  color: var(--color-navy-low);
+  padding: 1.6rem;
+  font: var(--font-body-sm);
+}
+
+.footer__inner {
+  max-width: 36rem;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  gap: 0.8rem;
+}
+
+.footer__text {
+  margin: 0;
+  line-height: 1.4;
+}
+
+.footer__link {
+  color: var(--color-gray-500);
+  text-decoration: none;
+  font-weight: 600;
+}
+
+.footer__link:hover,
+.footer__link:focus {
+  text-decoration: underline;
+  outline: none;
+}
