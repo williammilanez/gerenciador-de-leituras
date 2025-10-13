@@ -109,6 +109,12 @@ button:focus {
 }
 
 /* Main */
+main {
+  padding: 0 1.6rem 4rem;
+  width: 100%;
+  min-height: 100vh;
+}
+
 /* Filtro de busca */
 #filter {
   display: flex;
@@ -381,4 +387,10 @@ button:focus {
   border-color: var(--color-gray-300);
   box-shadow: 0 0.2rem 0.6rem rgba(0, 0, 0, 0.05);
   transition: all 0.2s ease;
+}
+
+.empty {
+  font: var(--font-body-md);
+  color: var(--color-gray-400);
+  text-align: center;
 }

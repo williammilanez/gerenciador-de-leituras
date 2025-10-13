@@ -159,6 +159,7 @@
     const books = Storage.getBooks();
     const book = books.find((b) => b.id === id);
     if (!book) return;
+
     // preencher form
     form.dataset.editId = id; // marca que estamos editando
     form.querySelector("#book-title").value = book.title || "";
@@ -166,11 +167,44 @@
     form.querySelector("#book-image").value = book.image || "";
     form.querySelector("#book-status").value = book.status || "quero-ler";
     form.querySelector("#book-comment").value = book.comment || "";
+
     // rating radios
     const r = Math.floor(Math.max(0, Number(book.rating || 0)));
     const radio = form.querySelector(`#rating-${r}`);
     if (radio) radio.checked = true;
     Modal.updateStarsVisual(r);
+
+    // mudar título e botão do form
+    const formTitle = form.querySelector(".form-title"); // você precisa ter um elemento <h2 class="form-title">Adicionar Livro</h2>
+    const submitBtn = form.querySelector('button[type="submit"]');
+    if (formTitle) formTitle.textContent = "Editar Livro";
+    if (submitBtn) submitBtn.textContent = "Atualizar";
+
+    Modal.open();
+  }
+
+  function startAdd() {
+    // Limpar form
+    form.reset();
+    delete form.dataset.editId; // remover flag de edição
+
+    // Resetar título e botão
+    const formTitle = form.querySelector(".form-title");
+    const submitBtn = form.querySelector('button[type="submit"]');
+    if (formTitle) formTitle.textContent = "Adicionar livro";
+    if (submitBtn) submitBtn.textContent = "Adicionar";
+
+    // Resetar rating visual
+    const r0 = form.querySelector("#rating-0");
+    if (r0) r0.checked = true;
+    Modal.updateStarsVisual(0);
+
+    const addBookBtn = document.getElementById("add-book");
+    if (addBookBtn) {
+      addBookBtn.addEventListener("click", startAdd);
+    }
+
+    // abrir modal
     Modal.open();
   }
 
