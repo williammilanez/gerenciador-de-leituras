@@ -30,6 +30,7 @@
   </head>
 
   <body>
+    <!-- ===== HEADER ===== -->
     <header>
       <div id="header-top" class="container">
         <div id="logo" class="brand">
@@ -81,6 +82,7 @@
       </section>
     </header>
 
+    <!-- ===== MAIN ===== -->
     <main>
       <section id="filter" aria-label="Filtro de busca" class="container">
         <div class="search-row">
@@ -109,6 +111,7 @@
 
       <section id="books" class="container" aria-label="Lista de livros">
         <ul class="cards-list" role="list">
+          <!-- Card de livro -->
           <li class="card" role="listitem" data-id="1">
             <article class="card__inner" aria-labelledby="firstBook">
               <img
@@ -125,7 +128,6 @@
 
                 <div class="description">
                   <p class="stats-book done" aria-label="Status: Lido">Lido</p>
-
                   <div
                     class="stars"
                     role="img"
@@ -134,7 +136,6 @@
                   >
                     <span aria-hidden="true">★★★★☆</span>
                   </div>
-
                   <p class="comment">
                     Maravilhoso, abre a mente! Difícil parar de ler.
                   </p>
@@ -396,6 +397,7 @@
         </ul>
       </section>
 
+      <!-- Modal de formulário -->
       <div
         id="book-form-modal"
         role="dialog"
@@ -503,36 +505,11 @@
               />
 
               <div class="stars-visual" aria-hidden="true">
-                <button
-                  type="button"
-                  class="star"
-                  data-value="1"
-                  aria-hidden="true"
-                ></button>
-                <button
-                  type="button"
-                  class="star"
-                  data-value="2"
-                  aria-hidden="true"
-                ></button>
-                <button
-                  type="button"
-                  class="star"
-                  data-value="3"
-                  aria-hidden="true"
-                ></button>
-                <button
-                  type="button"
-                  class="star"
-                  data-value="4"
-                  aria-hidden="true"
-                ></button>
-                <button
-                  type="button"
-                  class="star"
-                  data-value="5"
-                  aria-hidden="true"
-                ></button>
+                <button type="button" class="star" data-value="1"></button>
+                <button type="button" class="star" data-value="2"></button>
+                <button type="button" class="star" data-value="3"></button>
+                <button type="button" class="star" data-value="4"></button>
+                <button type="button" class="star" data-value="5"></button>
               </div>
 
               <button
@@ -566,6 +543,7 @@
       </div>
     </main>
 
+    <!-- ===== FOOTER ===== -->
     <footer class="footer">
       <div class="footer__inner">
         <p class="footer__text">

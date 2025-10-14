@@ -110,7 +110,7 @@ button:focus {
 
 /* Main */
 main {
-  padding: 0 1.6rem 4rem;
+  padding: 0 1.6rem 3.2rem;
   width: 100%;
   min-height: 100vh;
 }
@@ -322,62 +322,76 @@ main {
   text-align: left;
 }
 
-/* Rodapé do card: botões lado a lado, alinhados à direita */
+/* Rodapé do card: botões lado a lado */
 .cardFooter {
   display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 100%;
-  max-width: 36rem;
-
+  align-items: center; /* garante alinhamento vertical do conteúdo dos botões */
+  justify-content: center; /* trocar por flex-end se quiser colados à direita */
   gap: 0.8rem;
+  width: 100%;
   flex-wrap: nowrap;
+  min-width: 0;
 }
 
-/* Botão editar livro */
+/* Botões: dividir o espaço igualmente e respeitar padding (sem width:100% que causava overflow) */
+.cardFooter > button {
+  flex: 1 1 0;
+  min-width: 0;
+  display: flex; /* força layout flex no próprio botão */
+  align-items: center; /* CENTRA VERTICAL */
+  justify-content: center;
+  gap: 1.2rem;
+  padding: 0.8rem 1.6rem;
+  border-radius: 0.8rem;
+  background-color: var(--color-white);
+  font: var(--font-action);
+  white-space: nowrap;
+  cursor: pointer;
+  border: 0.1rem solid var(--color-gray-200);
+  line-height: 1; /* evita que texto alto empurre o conteúdo */
+  box-sizing: border-box;
+}
+
+.cardFooter button img {
+  display: block;
+  width: auto; /* permite que a largura se ajuste proporcionalmente */
+  max-width: 1.6rem; /* limita o tamanho máximo horizontal */
+  height: auto; /* evita corte vertical por height fixo */
+  max-height: 1.6rem; /* limite vertical definido */
+  object-fit: contain;
+  object-position: center;
+  margin: 0;
+  padding: 0.125rem 0; /* pequeno espaço acima/abaixo para evitar corte visual */
+  align-self: center;
+  flex-shrink: 0;
+  overflow: visible; /* garante que nada seja escondido */
+}
+
+/* estilos específicos (cores) */
 .edit-book {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 1.2rem;
-  padding: 0.8rem 1.6rem;
-  border-radius: 0.8rem;
-  background-color: var(--color-white);
   color: var(--color-gray-500);
-  font: var(--font-action);
-  white-space: nowrap;
-  border: none;
-  cursor: pointer;
-  width: 100%;
-  border: 0.1rem solid var(--color-gray-200);
 }
-
-.edit-book img {
-  width: 1.6rem;
-  height: 1.6rem;
-}
-
-/* Botão excluir livro */
 .delete-book {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 1.2rem;
-  padding: 0.8rem 1.6rem;
-  border-radius: 0.8rem;
-  background-color: var(--color-white);
   color: var(--color-accent-red-bright);
-  font: var(--font-action);
-  white-space: nowrap;
-  border: none;
-  cursor: pointer;
-  width: 100%;
-  border: 0.1rem solid var(--color-gray-200);
 }
 
-.delete-book img {
+/* IMAGEM: zera margens, evita shrink e garante centralização absoluta */
+.cardFooter button img {
+  display: block; /* remove comportamento inline que provoca desalinhos */
   width: 1.6rem;
   height: 1.6rem;
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain; /* preserva proporção */
+  margin: 0; /* remove margens indesejadas */
+  padding: 0;
+  align-self: center; /* força alinhamento vertical no flex do botão */
+  flex-shrink: 0; /* evita que a imagem encolha quando espaço for pequeno */
+}
+
+/* Fallback caso o SVG tenha espaços internos no viewBox (ajuste fino) */
+.cardFooter button img.nudge {
+  transform: translateY(1px); /* aumente para 2px ou 3px se necessário */
 }
 
 /* Hover dos botões */

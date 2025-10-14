@@ -1,86 +1,247 @@
-/* ===== Desktop layout (4-col / header lado a lado / stats em linha) ===== */
-@media (min-width: 860px) {
-  /* Ajusta espaçamento geral do header e centraliza o conteúdo com mais largura */
-  header {
-    padding: 3.2rem 2.4rem;
-    align-items: center; /* mantém itens em linha no topo */
+/* ==========================
+   RESPONSIVIDADE - 3 BREAKPOINTS
+   mobile:    0 — 767px
+   tablet:  768 — 1024px
+   desktop: 1025px +
+   ========================== */
+
+/* Base: garantir box-sizing e comportamento consistente em containers e imagens */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+/* --- MOBILE (padrão) --- */
+/* (Nenhum media query: regras base do seu styles.css já atuam aqui) */
+
+/* --- TABLET: 768px a 1024px --- */
+@media (min-width: 768px) and (max-width: 1024px) {
+  /* containers principais alinhados com largura central */
+  header,
+  #stats,
+  .cards-list,
+  .footer__inner,
+  #filter {
+    max-width: 1120px;
+    margin-left: auto;
+    margin-right: auto;
+    width: 100%;
   }
 
-  /* Topo do header: aumenta max-width e garante espaço-between entre logo e botão */
+  /* HEADER: logo esquerda / botão direita */
   #header-top {
-    max-width: 1120px; /* largura do container desktop */
+    display: flex;
+    align-items: center;
+    justify-content: space-between; /* logo left / add-book right */
+    gap: 0;
+    max-width: 1120px;
     margin: 0 auto 2.4rem;
     width: 100%;
-    justify-content: space-between; /* logo à esquerda, botão à direita */
-    gap: 0; /* remove gaps extras do mobile */
-    align-items: center;
-    flex-wrap: nowrap;
   }
 
-  /* Força o logo a ocupar só o necessário e não embolar o botão */
+  #logo {
+    flex: 0 1 auto; /* só o necessário */
+    min-width: 0;
+    align-items: center;
+  }
+
+  #add-book {
+    flex: 0 0 auto; /* não cresce, fica à direita */
+    margin-left: 0;
+  }
+
+  /* STATS: 4 em uma linha */
+  #stats {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-template-rows: 1fr;
+    gap: 1.6rem;
+    width: 100%;
+    max-width: 1120px;
+  }
+
+  /* FILTER: input ocupa a maior parte; select com largura fixa 19.2rem */
+  #filter {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1.2rem;
+    width: 100%;
+    max-width: 1120px;
+    margin: 0 auto 2.4rem;
+    padding: 0.8rem 0;
+  }
+
+  .search-row {
+    flex: 1 1 auto;
+    min-width: 0;
+    display: flex;
+    gap: 1.2rem;
+    align-items: center;
+  }
+
+  #search-input {
+    flex: 1 1 auto;
+    min-width: 0;
+  }
+
+  /* largura fixa do filtro: 19.2rem */
+  #search-filter {
+    flex: 0 0 19.2rem;
+    max-width: 19.2rem;
+    width: 19.2rem;
+  }
+
+  /* CARDS: duas colunas em tablet (ajusta-se melhor em telas menores) */
+  .cards-list {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.6rem;
+    max-width: 1120px;
+    margin: 0 auto;
+    grid-auto-rows: 1fr;
+    align-items: stretch;
+    padding: 0;
+  }
+
+  /* garantir que cada card seja um flex column e ocupe toda a altura da célula do grid */
+  .card {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    min-width: 0; /* permite que o conteúdo encolha sem overflow */
+    padding: 1.6rem;
+  }
+
+  /* conteúdo do card expande para empurrar o footer para baixo */
+  .card__inner {
+    display: flex;
+    flex-direction: column;
+    gap: 0.8rem;
+    flex: 1 1 auto; /* expande para empurrar o footer para baixo */
+    min-height: 0; /* importante para permitir scroll interno se necessário */
+    min-width: 0;
+  }
+
+  .bookCard {
+    display: flex;
+    flex-direction: column;
+    gap: 0.4rem;
+    flex: 1 1 auto;
+    min-width: 0;
+    max-width: 100%;
+  }
+
+  /* Imagem do card: altura controlada para tablets */
+  .card__inner img {
+    width: 100%;
+    height: 220px; /* caixa fixa para uniformidade no tablet */
+    object-fit: contain; /* mostra a imagem inteira sem cortar */
+    object-position: center;
+    display: block;
+    background-color: var(
+      --color-gray-100
+    ); /* opcional: "letterbox" neutro atrás da imagem */
+    border-radius: 0.8rem;
+  }
+
+  /* footer do card alinhado ao final */
+  .cardFooter {
+    margin-top: auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-between; /* mantém os botões juntos à direita */
+    gap: 0.8rem;
+    width: 100%;
+    min-width: 0;
+  }
+
+  .cardFooter > button {
+    flex: 0 0 auto;
+    max-width: 100%;
+  }
+}
+
+/* --- DESKTOP: >= 1025px --- */
+@media (min-width: 1025px) {
+  /* containers principais com largura desktop */
+  header,
+  #stats,
+  .cards-list,
+  .footer__inner,
+  #filter {
+    max-width: 1120px;
+    margin-left: auto;
+    margin-right: auto;
+    width: 100%;
+  }
+
+  /* HEADER: logo esquerda / botão direita */
+  #header-top {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0;
+    max-width: 1120px;
+    margin: 0 auto 2.4rem;
+    width: 100%;
+  }
+
   #logo {
     flex: 0 1 auto;
     min-width: 0;
     align-items: center;
   }
 
-  /* Garante que o botão não cresça e fique no canto direito */
   #add-book {
     flex: 0 0 auto;
-    margin-left: auto;
+    margin-left: 0;
   }
 
-  /* ===== Stats: 4 em uma linha ===== */
+  /* STATS: força 4 em linha sempre */
   #stats {
-    max-width: 1120px;
-    margin: 0 auto 2.4rem;
+    display: grid;
     grid-template-columns: repeat(4, 1fr);
     grid-template-rows: 1fr;
     gap: 1.6rem;
     width: 100%;
-  }
-
-  .stat-card {
-    /* mantém o conteúdo legível mas com padding levemente menor para desktop */
-    padding: 1.2rem;
-  }
-
-  /* ===== Filter: search-row ocupa a maior parte; search-filter fica ~200px na direita ===== */
-  #filter {
     max-width: 1120px;
     margin: 0 auto 2.4rem;
-    width: 100%;
-    padding: 0.8rem 0;
+  }
+
+  /* FILTER: input largo + select 19.2rem */
+  #filter {
     display: flex;
     flex-direction: row;
     align-items: center;
     justify-content: space-between;
     gap: 1.2rem;
+    width: 100%;
+    max-width: 1120px;
+    margin: 0 auto 2.4rem;
+    padding: 0.8rem 0;
   }
 
-  /* Container que contém input + ícone (usa o restante do espaço) */
   .search-row {
     flex: 1 1 auto;
-    display: flex;
-    align-items: center;
-    gap: 1.2rem;
     min-width: 0;
+    display: flex;
+    gap: 1.2rem;
+    align-items: center;
   }
-
-  /* Input de pesquisa expande para ocupar todo o espaço disponível */
   #search-input {
     flex: 1 1 auto;
-    min-width: 0; /* importante para truncar em layouts estreitos */
+    min-width: 0;
   }
-
-  /* Fixa a largura do select de filtro (aprox. 200px) e impede crescimento */
   #search-filter {
-    flex: 0 0 200px; /* largura fixa ~200px */
-    max-width: 200px;
-    width: 200px;
+    flex: 0 0 19.2rem;
+    max-width: 19.2rem;
+    width: 19.2rem;
   }
 
-  /* ===== Cards: grid 4 colunas, mantendo a ordem e reduzindo tamanho ===== */
+  /* CARDS: 4 colunas no desktop */
   .cards-list {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
@@ -88,59 +249,123 @@
     max-width: 1120px;
     margin: 0 auto;
     padding: 0;
+    grid-auto-rows: 1fr;
+    align-items: stretch;
   }
 
   .card {
-    /* reduz padding para caber 4 por linha e ficar visualmente equilibrado */
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    min-width: 0;
     padding: 1.2rem;
   }
 
-  /* Mantém a estrutura interna do card em coluna (como você pediu) */
+  /* inner do card expande para empurrar o footer para baixo */
   .card__inner {
+    display: flex;
     flex-direction: column;
-    align-items: flex-start;
     gap: 0.8rem;
+    flex: 1 1 auto;
+    min-height: 0;
+    min-width: 0;
   }
 
-  /* Ajuste da imagem para não ficar muito grande em cards pequenos */
+  /* garante que a área com título/descrição ocupe o espaço necessário */
+  .bookCard {
+    display: flex;
+    flex-direction: column;
+    gap: 0.4rem;
+    flex: 1 1 auto;
+    min-width: 0;
+    max-width: 100%;
+  }
+
+  /* imagem: altura fixa e object-fit para consistência */
   .card__inner img {
     width: 100%;
-    height: auto;
-    max-height: 320px; /* limita a altura para manter uniformidade das linhas */
-    object-fit: cover;
-    margin-bottom: 0.6rem;
+    height: 240px; /* caixa fixa no desktop */
+    object-fit: contain; /* mostra a imagem inteira sem cortar */
+    object-position: center;
+    display: block;
+    background-color: var(--color-gray-100);
+    border-radius: 0.8rem;
   }
 
-  /* Ajusta tipografia dos títulos/autores para caber melhor */
+  /* título e autor escalados para desktop */
   .title-book {
-    font-size: 1rem;
+    font-size: 1.5rem;
   }
   .author {
-    font-size: 0.9rem;
+    font-size: 1.125rem;
   }
 
-  /* Footer dos cards — alinha botões à direita em desktop */
+  /* cardFooter: sempre no final do card, alinha os botões à direita */
   .cardFooter {
-    max-width: 1120px;
-    margin: 1rem auto 0;
-    justify-content: flex-end;
+    margin-top: auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-between; /* os botões ficam à direita agrupados */
+    gap: 0.8rem;
+    width: 100%;
+    min-width: 0;
   }
 
-  /* Botões: em desktop preferimos tamanho mínimo (não 100% width) */
-  .edit-book,
-  .delete-book {
-    width: auto;
-    padding: 0.6rem 1rem;
+  .cardFooter > button {
+    flex: 0 0 auto;
   }
 
-  .cards-list .empty {
-    grid-column: 1 / -1; /* ocupa todas as 4 colunas */
-    text-align: center;
-    font: var(--font-body-md);
-    color: var(--color-gray-400);
-    background: none; /* remove fundo se herdar estilo de card */
-    border: none; /* garante que não pareça um card */
-    box-shadow: none;
-    padding: 1.6rem 0;
+  /* ajuste para as imagens dos cards manterem proporção e não estourarem */
+  .card__inner img {
+    height: 240px;
+    object-fit: cover;
+    width: 100%;
+  }
+
+  /* botões: não ocupam 100%, apenas o necessário, alinhados na base */
+  .cardFooter > button {
+    flex: 0 0 auto;
+  }
+
+  /* pequeno ajuste para evitar que o conteúdo interno provoque overflow horizontal */
+  .card,
+  .card * {
+    word-break: break-word;
+    min-width: 0;
+  }
+
+  .bookCard .comment {
+    max-width: 100%;
+    overflow-wrap: break-word;
+    word-break: break-word;
   }
 }
+
+/* --- UTILIDADES/Correções comuns que evitam overflow/estouro --- */
+/* Garante que containers centrais sempre respeitem padding e não deixem elementos "vazar" */
+.container {
+  box-sizing: border-box;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* Força que textos e elementos flexíveis possam encolher corretamente */
+img,
+svg {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+/* Para casos em que um comentário tem muitas linhas: este bloco garante que
+   o footer fique no final do card e que os cards tenham altura igual na mesma linha */
+.cards-list .card {
+  overflow: hidden; /* evita que conteúdo excedente estoure visualmente */
+}
+
+/* Em layout GRID: se preferir forçar um mínimo de colunas em determinadas larguras
+   você pode sobrepor os templates acima com valores específicos. */
+
+/* --- DEBUG helpers (remova em produção) --- */
+/* .cards-list { outline: 1px dashed rgba(0,0,0,0.04); }
+   .card { outline: 1px solid rgba(0,0,0,0.02); } */
