@@ -1,16 +1,10 @@
 <p align="center">
-  <img alt="Ícone Reading Manager" src="./assets/images/logotipo.png" width="65px" />
-  <img alt="Logo Reading Manager" src="./assets/images/capa-projeto.png" width="200px" />
+  <img alt="Logo Reading Manager" src="./assets/images/logotipo.png" width="250px" />
 </p>
 
 <p align="center">
-  Gerenciador de leituras interativo, desenvolvido com **HTML, CSS e JavaScript**, permitindo organizar livros por status, avaliação e comentários.<br/>
-  Totalmente **responsivo** e funcional em **Desktop**, **Tablet** e **Mobile**.
-</p>
-
-<p align="center">
-  <a href="#-tecnologias">Tecnologias</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
   <a href="#-projeto">Projeto</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
+  <a href="#-tecnologias">Tecnologias</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
   <a href="#-layout">Layout</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
   <a href="#-licença">Licença</a>
 </p>
@@ -23,23 +17,15 @@
 ---
 
 <p align="center">
-  <img alt="Preview do projeto" src="./assets/projeto.png" width="100%">
+  <img alt="Preview do projeto" src="./assets/images/projeto.png" width="100%">
 </p>
-
-## 🚀 Tecnologias
-
-Desenvolvido com:
-
-- **HTML5**
-- **CSS3** (Flexbox e Grid)
-- **JavaScript (Vanilla)**
-
----
 
 ## 💻 Projeto
 
 **Gerenciador de Leituras** é um sistema interativo para gerenciar livros que você quer ler, está lendo ou já leu.  
-Ele permite cadastrar, editar, excluir e filtrar livros por status, além de permitir uma avaliação com estrelas e adição de comentários. O projeto foca em **UX responsiva**, persistência de dados no **LocalStorage** e acessibilidade.
+Ele permite cadastrar, editar, excluir e filtrar livros por status, avaliação de livros com estrelas e adição de comentários.
+O projeto foca em **UX responsiva**, persistência de dados no **LocalStorage** e acessibilidade.
+É totalmente **responsivo** e funcional em **Desktop**, **Tablet** e **Mobile**.
 
 Funcionalidades principais:
 
@@ -49,6 +35,16 @@ Funcionalidades principais:
 - **Estatísticas dinâmicas** de leitura.
 - **Modal responsivo** com foco inicial e reset de formulário.
 - **Persistência de dados** usando LocalStorage, incluindo fallback de imagens.
+
+---
+
+## 🚀 Tecnologias
+
+Desenvolvido com:
+
+- **HTML5**
+- **CSS3** (Flexbox e Grid)
+- **JavaScript (Vanilla)**
 
 ---
 
