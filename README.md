@@ -1,5 +1,5 @@
 <p align="center">
-  <img alt="Logo Reading Manager" src="./assets/images/logotipo.png" width="250px" />
+  <img alt="Logo Reading Manager" src="./assets/images/logotipobg.png" width="250px" />
 </p>
 
 <p align="center">
@@ -19,7 +19,7 @@
 ---
 
 <p align="center">
-  <img alt="Preview do projeto" src="./assets/images/projeto.png" width="100%">
+  <img alt="Projeto" src="./assets/images/projeto.png" width="75%">
 </p>
 
 ## 💻 Projeto
@@ -53,10 +53,11 @@ Desenvolvido com:
 ## 🔖 Layout
 
 Visualize o layout do projeto:
-
-- **Preview Desktop/Tablet/Mobile:** ![Preview](./assets/projeto.png)
-- Cards com título, autor, status, avaliação e comentário.
-- Modal interativo para adicionar ou editar livros.
+<p align="center">
+<img alt="Preview do projeto" src="./assets/images/project-preview.png" width="75%">
+</p>
+- Cards com título, autor, status, avaliação e comentário.<br>
+- Modal interativo para adicionar ou editar livros.<br>
 - Estatísticas em tempo real.
 
 ---
