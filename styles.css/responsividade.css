@@ -140,6 +140,11 @@
     flex: 0 0 auto;
     padding: 0.8rem 4.2rem;
   }
+
+  .cards-list .empty {
+    grid-column: 1 / -1;
+    text-align: center;
+  }
 }
 
 /* === DESKTOP: >= 1025px === */
@@ -297,6 +302,11 @@
     max-width: 100%;
     overflow-wrap: break-word;
     word-break: break-word;
+  }
+
+  .cards-list .empty {
+    grid-column: 1 / -1;
+    text-align: center;
   }
 }
 

@@ -108,7 +108,7 @@
     if (!list.length) {
       const all = Storage.getBooks();
       listEl.innerHTML = !all.length
-        ? '<p class="empty">Nenhum livro adicionado ainda. Comece adicionando seu primeiro livro!</p>'
+        ? '<p class="empty">Nenhum livro adicionado ainda.<br>Comece adicionando seu primeiro livro!</p>'
         : '<p class="empty">Nenhum livro encontrado para os critérios informados.</p>';
       updateStats([]);
       if (statsContainer) statsContainer.style.display = "none";
