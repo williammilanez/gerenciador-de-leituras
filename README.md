@@ -77,7 +77,7 @@ Visualize o layout do projeto:
 ## 📁 Estrutura de Pastas
 
 ```
-reading-manager/
+gerenciador-de-leituras/
 │
 ├── assets/
 │ ├── icons/...
