@@ -10,8 +10,10 @@
 </p>
 
 <p align="center">
-  <img src="https://img.shields.io/static/v1?label=PRs&message=welcome&color=1D4ED8&labelColor=0F172A" alt="PRs welcome!" />
   <img alt="License" src="https://img.shields.io/static/v1?label=license&message=MIT&color=1D4ED8&labelColor=0F172A">
+  <img src="https://img.shields.io/badge/status-active-success" alt="Status: active">
+  <img src="https://img.shields.io/github/last-commit/williammilanez/reading-manager" alt="Last commit">
+  <img src="https://img.shields.io/github/languages/top/williammilanez/reading-manager" alt="Top language">
 </p>
 
 ---
@@ -22,9 +24,9 @@
 
 ## 💻 Projeto
 
-**Gerenciador de Leituras** é um sistema interativo para gerenciar livros que você quer ler, está lendo ou já leu.  
-Ele permite cadastrar, editar, excluir e filtrar livros por status, avaliação de livros com estrelas e adição de comentários.
-O projeto foca em **UX responsiva**, persistência de dados no **LocalStorage** e acessibilidade.
+**Gerenciador de Leituras** é um sistema interativo para gerenciar livros que você quer ler, está lendo ou já leu.<br>
+Ele permite cadastrar, editar, excluir e filtrar livros por status, avaliação de livros com estrelas e adição de comentários.<br>
+O projeto foca em **UX responsiva**, persistência de dados no **LocalStorage** e acessibilidade.<br>
 É totalmente **responsivo** e funcional em **Desktop**, **Tablet** e **Mobile**.
 
 Funcionalidades principais:
@@ -115,8 +117,8 @@ reading-manager/
 
 ## 👨‍💻 Autor
 
-Desenvolvido por **Rocketseat**
-Adaptado e implementado por **William Milanez**
+Desenvolvido por **Rocketseat**<br>
+Adaptado e implementado por **William Milanez**<br>
 📍 Pós-graduação Dev Start – Desafio Fase 2 – _Gerenciador de Leituras_
 
 ---
