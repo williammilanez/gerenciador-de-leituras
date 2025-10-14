@@ -1,6 +1,3 @@
-// Responsável por persistência (localStorage).
-// Expõe App.Storage: getBooks, saveBooks, addBook, updateBook, deleteBook
-
 (function (global) {
   const LS_KEY = "readingManager.books";
 
@@ -43,7 +40,6 @@
     saveBooks(books);
   }
 
-  // Expor em namespace global App.Storage
   global.App = global.App || {};
   global.App.Storage = {
     getBooks,

@@ -1,8 +1,5 @@
-// Inicializa a aplicação (carrega Storage/Modal/UI)
-
 (function (global) {
   document.addEventListener("DOMContentLoaded", () => {
-    // --- Migração: garantir imagem default para livros sem capa ---
     function migrateMissingImages() {
       const books = global.App?.Storage?.getBooks?.() || [];
       const DEFAULT_COVER = "./assets/images/default-cover.png";
@@ -24,10 +21,8 @@
       }
     }
 
-    // Executa a migração antes de carregar a interface
     migrateMissingImages();
 
-    // --- Inicializa UI ---
     if (
       global.App &&
       global.App.UI &&
@@ -38,7 +33,6 @@
       console.error("App.UI não disponível");
     }
 
-    // --- Fechamento por ESC (fecha modal quando aberto) ---
     document.addEventListener("keydown", (e) => {
       if (e.key === "Escape") {
         const modal = document.getElementById("book-form-modal");
@@ -48,7 +42,6 @@
       }
     });
 
-    // --- Sincroniza visual das estrelas quando o usuário muda manualmente ---
     const radios = document.querySelectorAll('#book-form input[name="rating"]');
     radios.forEach((r) => {
       r.addEventListener("change", (e) => {

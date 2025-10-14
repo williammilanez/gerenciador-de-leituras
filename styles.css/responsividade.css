@@ -1,23 +1,12 @@
-/* ==========================
-   RESPONSIVIDADE - 3 BREAKPOINTS
-   mobile:    0 — 767px
-   tablet:  768 — 1024px
-   desktop: 1025px +
-   ========================== */
-
-/* Base: garantir box-sizing e comportamento consistente em containers e imagens */
+/* ===== RESPONSIVIDADE (breakpoints) ===== */
 *,
 *::before,
 *::after {
   box-sizing: border-box;
 }
 
-/* --- MOBILE (padrão) --- */
-/* (Nenhum media query: regras base do seu styles.css já atuam aqui) */
-
-/* --- TABLET: 768px a 1024px --- */
+/* === TABLET: 768px a 1024px === */
 @media (min-width: 768px) and (max-width: 1024px) {
-  /* containers principais alinhados com largura central */
   header,
   #stats,
   .cards-list,
@@ -29,156 +18,6 @@
     width: 100%;
   }
 
-  /* HEADER: logo esquerda / botão direita */
-  #header-top {
-    display: flex;
-    align-items: center;
-    justify-content: space-between; /* logo left / add-book right */
-    gap: 0;
-    max-width: 1120px;
-    margin: 0 auto 2.4rem;
-    width: 100%;
-  }
-
-  #logo {
-    flex: 0 1 auto; /* só o necessário */
-    min-width: 0;
-    align-items: center;
-  }
-
-  #add-book {
-    flex: 0 0 auto; /* não cresce, fica à direita */
-    margin-left: 0;
-  }
-
-  /* STATS: 4 em uma linha */
-  #stats {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    grid-template-rows: 1fr;
-    gap: 1.6rem;
-    width: 100%;
-    max-width: 1120px;
-  }
-
-  /* FILTER: input ocupa a maior parte; select com largura fixa 19.2rem */
-  #filter {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: space-between;
-    gap: 1.2rem;
-    width: 100%;
-    max-width: 1120px;
-    margin: 0 auto 2.4rem;
-    padding: 0.8rem 0;
-  }
-
-  .search-row {
-    flex: 1 1 auto;
-    min-width: 0;
-    display: flex;
-    gap: 1.2rem;
-    align-items: center;
-  }
-
-  #search-input {
-    flex: 1 1 auto;
-    min-width: 0;
-  }
-
-  /* largura fixa do filtro: 19.2rem */
-  #search-filter {
-    flex: 0 0 19.2rem;
-    max-width: 19.2rem;
-    width: 19.2rem;
-  }
-
-  /* CARDS: duas colunas em tablet (ajusta-se melhor em telas menores) */
-  .cards-list {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 1.6rem;
-    max-width: 1120px;
-    margin: 0 auto;
-    grid-auto-rows: 1fr;
-    align-items: stretch;
-    padding: 0;
-  }
-
-  /* garantir que cada card seja um flex column e ocupe toda a altura da célula do grid */
-  .card {
-    display: flex;
-    flex-direction: column;
-    height: 100%;
-    min-width: 0; /* permite que o conteúdo encolha sem overflow */
-    padding: 1.6rem;
-  }
-
-  /* conteúdo do card expande para empurrar o footer para baixo */
-  .card__inner {
-    display: flex;
-    flex-direction: column;
-    gap: 0.8rem;
-    flex: 1 1 auto; /* expande para empurrar o footer para baixo */
-    min-height: 0; /* importante para permitir scroll interno se necessário */
-    min-width: 0;
-  }
-
-  .bookCard {
-    display: flex;
-    flex-direction: column;
-    gap: 0.4rem;
-    flex: 1 1 auto;
-    min-width: 0;
-    max-width: 100%;
-  }
-
-  /* Imagem do card: altura controlada para tablets */
-  .card__inner img {
-    width: 100%;
-    height: 220px; /* caixa fixa para uniformidade no tablet */
-    object-fit: contain; /* mostra a imagem inteira sem cortar */
-    object-position: center;
-    display: block;
-    background-color: var(
-      --color-gray-100
-    ); /* opcional: "letterbox" neutro atrás da imagem */
-    border-radius: 0.8rem;
-  }
-
-  /* footer do card alinhado ao final */
-  .cardFooter {
-    margin-top: auto;
-    display: flex;
-    align-items: center;
-    justify-content: space-between; /* mantém os botões juntos à direita */
-    gap: 0.8rem;
-    width: 100%;
-    min-width: 0;
-  }
-
-  .cardFooter > button {
-    flex: 0 0 auto;
-    max-width: 100%;
-  }
-}
-
-/* --- DESKTOP: >= 1025px --- */
-@media (min-width: 1025px) {
-  /* containers principais com largura desktop */
-  header,
-  #stats,
-  .cards-list,
-  .footer__inner,
-  #filter {
-    max-width: 1120px;
-    margin-left: auto;
-    margin-right: auto;
-    width: 100%;
-  }
-
-  /* HEADER: logo esquerda / botão direita */
   #header-top {
     display: flex;
     align-items: center;
@@ -200,7 +39,6 @@
     margin-left: 0;
   }
 
-  /* STATS: força 4 em linha sempre */
   #stats {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
@@ -208,10 +46,8 @@
     gap: 1.6rem;
     width: 100%;
     max-width: 1120px;
-    margin: 0 auto 2.4rem;
   }
 
-  /* FILTER: input largo + select 19.2rem */
   #filter {
     display: flex;
     flex-direction: row;
@@ -231,17 +67,156 @@
     gap: 1.2rem;
     align-items: center;
   }
+
   #search-input {
     flex: 1 1 auto;
     min-width: 0;
   }
+
   #search-filter {
     flex: 0 0 19.2rem;
     max-width: 19.2rem;
     width: 19.2rem;
   }
 
-  /* CARDS: 4 colunas no desktop */
+  .cards-list {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.6rem;
+    max-width: 1120px;
+    margin: 0 auto;
+    grid-auto-rows: 1fr;
+    align-items: stretch;
+    padding: 0;
+  }
+
+  .card {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    min-width: 0;
+    padding: 1.6rem;
+  }
+
+  .card__inner {
+    display: flex;
+    flex-direction: column;
+    gap: 0.8rem;
+    flex: 1 1 auto;
+    min-height: 0;
+    min-width: 0;
+  }
+
+  .bookCard {
+    display: flex;
+    flex-direction: column;
+    gap: 0.4rem;
+    flex: 1 1 auto;
+    min-width: 0;
+    max-width: 100%;
+  }
+
+  .card__inner img {
+    width: 100%;
+    height: 220px;
+    object-fit: contain;
+    object-position: center;
+    display: block;
+    background-color: var(--color-gray-100);
+    border-radius: 0.8rem;
+  }
+
+  .cardFooter {
+    margin-top: auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.8rem;
+    width: 100%;
+    min-width: 0;
+  }
+
+  .cardFooter > button {
+    flex: 0 0 auto;
+    padding: 0.8rem 4.2rem;
+  }
+}
+
+/* === DESKTOP: >= 1025px === */
+@media (min-width: 1025px) {
+  header,
+  #stats,
+  .cards-list,
+  .footer__inner,
+  #filter {
+    max-width: 1120px;
+    margin-left: auto;
+    margin-right: auto;
+    width: 100%;
+  }
+
+  #header-top {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0;
+    max-width: 1120px;
+    margin: 0 auto 2.4rem;
+    width: 100%;
+  }
+
+  #logo {
+    flex: 0 1 auto;
+    min-width: 0;
+    align-items: center;
+  }
+
+  #add-book {
+    flex: 0 0 auto;
+    margin-left: 0;
+  }
+
+  #stats {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-template-rows: 1fr;
+    gap: 1.6rem;
+    width: 100%;
+    max-width: 1120px;
+    margin: 0 auto 2.4rem;
+  }
+
+  #filter {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1.2rem;
+    width: 100%;
+    max-width: 1120px;
+    margin: 0 auto 2.4rem;
+    padding: 0.8rem 0;
+  }
+
+  .search-row {
+    flex: 1 1 auto;
+    min-width: 0;
+    display: flex;
+    gap: 1.2rem;
+    align-items: center;
+  }
+
+  #search-input {
+    flex: 1 1 auto;
+    min-width: 0;
+  }
+
+  #search-filter {
+    flex: 0 0 19.2rem;
+    max-width: 19.2rem;
+    width: 19.2rem;
+  }
+
   .cards-list {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
@@ -261,7 +236,6 @@
     padding: 1.2rem;
   }
 
-  /* inner do card expande para empurrar o footer para baixo */
   .card__inner {
     display: flex;
     flex-direction: column;
@@ -271,7 +245,6 @@
     min-width: 0;
   }
 
-  /* garante que a área com título/descrição ocupe o espaço necessário */
   .bookCard {
     display: flex;
     flex-direction: column;
@@ -281,18 +254,16 @@
     max-width: 100%;
   }
 
-  /* imagem: altura fixa e object-fit para consistência */
   .card__inner img {
     width: 100%;
-    height: 240px; /* caixa fixa no desktop */
-    object-fit: contain; /* mostra a imagem inteira sem cortar */
+    height: 240px;
+    object-fit: contain;
     object-position: center;
     display: block;
     background-color: var(--color-gray-100);
     border-radius: 0.8rem;
   }
 
-  /* título e autor escalados para desktop */
   .title-book {
     font-size: 1.5rem;
   }
@@ -300,12 +271,11 @@
     font-size: 1.125rem;
   }
 
-  /* cardFooter: sempre no final do card, alinha os botões à direita */
   .cardFooter {
     margin-top: auto;
     display: flex;
     align-items: center;
-    justify-content: space-between; /* os botões ficam à direita agrupados */
+    justify-content: space-between;
     gap: 0.8rem;
     width: 100%;
     min-width: 0;
@@ -313,21 +283,10 @@
 
   .cardFooter > button {
     flex: 0 0 auto;
+    max-width: 100%;
+    gap: 0.6rem;
   }
 
-  /* ajuste para as imagens dos cards manterem proporção e não estourarem */
-  .card__inner img {
-    height: 240px;
-    object-fit: cover;
-    width: 100%;
-  }
-
-  /* botões: não ocupam 100%, apenas o necessário, alinhados na base */
-  .cardFooter > button {
-    flex: 0 0 auto;
-  }
-
-  /* pequeno ajuste para evitar que o conteúdo interno provoque overflow horizontal */
   .card,
   .card * {
     word-break: break-word;
@@ -341,15 +300,13 @@
   }
 }
 
-/* --- UTILIDADES/Correções comuns que evitam overflow/estouro --- */
-/* Garante que containers centrais sempre respeitem padding e não deixem elementos "vazar" */
+/* ===== UTILITÁRIOS / PREVENÇÃO DE OVERFLOW ===== */
 .container {
   box-sizing: border-box;
   margin-left: auto;
   margin-right: auto;
 }
 
-/* Força que textos e elementos flexíveis possam encolher corretamente */
 img,
 svg {
   max-width: 100%;
@@ -357,15 +314,6 @@ svg {
   display: block;
 }
 
-/* Para casos em que um comentário tem muitas linhas: este bloco garante que
-   o footer fique no final do card e que os cards tenham altura igual na mesma linha */
 .cards-list .card {
-  overflow: hidden; /* evita que conteúdo excedente estoure visualmente */
+  overflow: hidden;
 }
-
-/* Em layout GRID: se preferir forçar um mínimo de colunas em determinadas larguras
-   você pode sobrepor os templates acima com valores específicos. */
-
-/* --- DEBUG helpers (remova em produção) --- */
-/* .cards-list { outline: 1px dashed rgba(0,0,0,0.04); }
-   .card { outline: 1px solid rgba(0,0,0,0.02); } */

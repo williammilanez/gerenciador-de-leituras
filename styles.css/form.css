@@ -1,4 +1,4 @@
-/* ===== Backdrop + Modal Base ===== */
+/* ===== MODAL / BACKDROP ===== */
 #book-form-modal {
   position: fixed;
   inset: 0;
@@ -8,14 +8,14 @@
   z-index: 1000;
   padding: 2.4rem;
   box-sizing: border-box;
-  overflow-y: auto; /* permite scroll quando o conteúdo é maior que a tela */
+  overflow-y: auto;
 }
 
 #book-form-modal[hidden] {
   display: none;
 }
 
-/* ===== Modal Dialog Box ===== */
+/* ===== DIALOG BOX ===== */
 #book-form-modal .book-form {
   width: 100%;
   max-width: 520px;
@@ -27,11 +27,11 @@
   display: flex;
   flex-direction: column;
   gap: 1.2rem;
-  max-height: 90vh; /* limita altura do modal */
-  overflow-y: auto; /* scroll interno */
+  max-height: 90vh;
+  overflow-y: auto;
 }
 
-/* ===== Título do Form ===== */
+/* ===== FORM TITLE ===== */
 #book-form h2 {
   font: var(--font-heading-lg);
   color: var(--color-gray-500);
@@ -39,7 +39,7 @@
   text-align: left;
 }
 
-/* ===== Linhas do Form ===== */
+/* ===== FORM ROWS ===== */
 .form-row {
   display: flex;
   flex-direction: column;
@@ -75,14 +75,14 @@
   color: var(--color-gray-500);
 }
 
-/* ===== Optional ===== */
+/* ===== OPTIONAL LABEL ===== */
 .optional {
   font-size: 0.85rem;
   color: var(--color-gray-300);
   font-style: italic;
 }
 
-/* ===== Fieldset Rating ===== */
+/* ===== RATING FIELDSET ===== */
 #rating-fieldset {
   border: none;
   padding: 0;
@@ -95,7 +95,7 @@
   margin-bottom: 0.4rem;
 }
 
-/* ===== Estrelas clicáveis ===== */
+/* ===== RATING VISUALS ===== */
 .rating {
   display: flex;
   gap: 0.4rem;
@@ -114,40 +114,32 @@
   display: none;
 }
 
-/* estrela preenchida quando selecionada */
 .rating input[type="radio"]:checked ~ label,
 .rating label:hover,
 .rating label:hover ~ label {
   background-image: url("../assets/icons/star-fill.svg");
 }
 
-/* Para hover funcionar corretamente da esquerda para a direita */
-.rating label:hover,
-.rating label:hover ~ label {
-  background-image: url("../assets/icons/star-fill.svg");
-}
-
 .rating-radio {
-  display: none; /* escondemos os radios visuais, mas continuam no form */
+  display: none;
 }
 
-/* ===== Estrelas interativas ===== */
+/* ===== STARS INTERACTIVE ===== */
 .star {
-  width: 2.4rem; /* largura da estrela */
-  height: 2.4rem; /* altura da estrela */
+  width: 2.4rem;
+  height: 2.4rem;
   display: inline-block;
   background-image: url("../assets/icons/star-empty.svg");
   background-repeat: no-repeat;
   background-size: contain;
   cursor: pointer;
-
   font-size: 0;
   color: transparent;
 }
 
 .stars-input {
   position: relative;
-  width: 10rem; /* 5 estrelas de 2rem */
+  width: 10rem;
   height: 2rem;
   display: block;
   cursor: pointer;
@@ -155,20 +147,18 @@
   background-size: 2rem;
 }
 
-/* Overlay que mostra estrelas preenchidas proporcionalmente */
 .stars-input .stars-overlay {
   content: "";
   position: absolute;
   top: 0;
   left: 0;
   height: 100%;
-  width: 0%; /* inicial: nenhuma estrela preenchida */
+  width: 0%;
   background: url("../assets/icons/star-fill.svg") repeat-x;
   background-size: 2rem;
-  pointer-events: none; /* não bloqueia clique */
+  pointer-events: none;
 }
 
-/* Inputs escondidos */
 .stars-input input[type="radio"] {
   display: none;
 }
@@ -176,13 +166,13 @@
 .stars-control {
   display: flex;
   align-items: center;
-  gap: 0.8rem; /* espaço entre visual e botão limpar */
+  gap: 0.8rem;
   column-gap: 0.8rem;
 }
 
 .stars-visual {
   display: inline-flex;
-  gap: 0.6rem; /* espaçamento entre estrelas — ajustável */
+  gap: 0.6rem;
   align-items: center;
   user-select: none;
 }
@@ -207,15 +197,13 @@
   outline: none;
 }
 
-/* Botões do hover/click serão controlados por JS */
-
-/* ===== Textarea ===== */
+/* ===== TEXTAREA ===== */
 textarea {
   resize: vertical;
   min-height: 4rem;
 }
 
-/* ===== Botões do Form ===== */
+/* ===== FORM ACTIONS / BUTTONS ===== */
 .form-actions {
   display: flex;
   justify-content: flex-end;
@@ -252,7 +240,7 @@ textarea {
   background-color: var(--color-gray-200);
 }
 
-/* ===== Bloquear scroll no body quando modal aberto ===== */
+/* ===== BODY STATE WHEN MODAL OPEN ===== */
 body.modal-open {
   overflow: hidden;
 }

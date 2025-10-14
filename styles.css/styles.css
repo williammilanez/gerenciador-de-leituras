@@ -1,5 +1,4 @@
-/* Header */
-/* Header principal */
+/* ===== HEADER ===== */
 header {
   padding: 3.2rem 1.6rem;
   display: flex;
@@ -9,7 +8,6 @@ header {
   line-height: 2.4rem;
 }
 
-/* Topo do header: logo + botão */
 #header-top {
   display: flex;
   align-items: center;
@@ -22,7 +20,6 @@ header {
   flex-wrap: nowrap;
 }
 
-/* Logo: ícone + texto */
 #logo {
   display: flex;
   align-items: center;
@@ -45,7 +42,6 @@ header {
   overflow: hidden;
 }
 
-/* Botão adicionar livro */
 #add-book {
   display: flex;
   align-items: center;
@@ -74,7 +70,7 @@ button:focus {
   outline-offset: 1px;
 }
 
-/* Estatísticas de leitura */
+/* ===== STATS ===== */
 #stats {
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -84,7 +80,6 @@ button:focus {
   max-width: 36rem;
 }
 
-/* Card individual de estatística */
 .stat-card {
   display: flex;
   flex-direction: column;
@@ -96,26 +91,24 @@ button:focus {
   flex: 1;
 }
 
-/* Número da estatística */
 .stat-number {
   font: var(--font-heading-xl);
   color: var(--color-gray-500);
 }
 
-/* Texto/label da estatística */
 .stat-label {
   font: var(--font-body-md);
   color: var(--color-gray-400);
 }
 
-/* Main */
+/* ===== MAIN ===== */
 main {
   padding: 0 1.6rem 3.2rem;
   width: 100%;
   min-height: 100vh;
 }
 
-/* Filtro de busca */
+/* ===== FILTER ===== */
 #filter {
   display: flex;
   flex-direction: column;
@@ -139,7 +132,6 @@ main {
   border: 0;
 }
 
-/* Linha de pesquisa */
 .search-row {
   display: flex;
   align-items: center;
@@ -159,16 +151,13 @@ main {
   border: 0.1rem solid var(--color-gray-200);
   border-radius: 0.8rem;
   background-color: var(--color-gray-100);
-
   background-image: url("../assets/icons/search-gray-400.svg");
   background-repeat: no-repeat;
   background-position: 1.2rem center;
   background-size: 1.8rem;
-
   padding: 0.8rem 1.2rem 0.8rem 4rem;
 }
 
-/* Seletor do filtro */
 #search-filter {
   width: 100%;
   font: var(--font-body-md);
@@ -180,7 +169,7 @@ main {
   cursor: pointer;
 }
 
-/* Lista de cards de livros */
+/* ===== CARDS ===== */
 .cards-list {
   display: flex;
   flex-direction: column;
@@ -192,7 +181,6 @@ main {
   list-style: none;
 }
 
-/* Card de livro */
 .card {
   display: flex;
   flex-direction: column;
@@ -202,28 +190,28 @@ main {
   padding: 2.4rem 1.6rem 0.8rem;
   gap: 1.2rem;
   border: 0.1rem solid var(--color-gray-200);
+  max-width: 100%;
+  box-sizing: border-box;
 }
 
-/* Conteúdo do card */
 .card__inner {
   display: flex;
-  flex-direction: column; /* Altera para coluna */
+  flex-direction: column;
   align-items: flex-start;
   gap: 1.2rem;
 }
 
-/* Imagem do livro */
 .card__inner img {
   width: 100%;
-  max-width: 100%;
   height: auto;
+  max-height: 100%;
+  object-fit: contain;
   border-radius: 0.8rem;
   box-shadow: 0 0.1rem 0.4rem rgba(0, 0, 0, 0.06);
   align-self: stretch;
   margin-bottom: 0.8rem;
 }
 
-/* Informações do livro */
 .bookCard {
   display: flex;
   flex-direction: column;
@@ -232,7 +220,6 @@ main {
   flex: 1;
 }
 
-/* Título do livro */
 .title-book {
   font: var(--font-heading-md);
   color: var(--color-gray-500);
@@ -240,7 +227,6 @@ main {
   text-align: left;
 }
 
-/* Autor do livro */
 .author {
   font: var(--font-body-md);
   color: var(--color-gray-400);
@@ -248,7 +234,6 @@ main {
   text-align: left;
 }
 
-/* Status do livro */
 .stats-book {
   display: inline-block;
   font: var(--font-badge);
@@ -258,29 +243,26 @@ main {
   padding: 0.4rem 0.8rem;
 }
 
-/* Lido/done = verde */
 .stats-book.done {
   color: var(--color-accent-green-base);
   background-color: var(--color-accent-green-light);
 }
 
-/* Quero ler/default = azul */
 .stats-book.default {
   color: var(--color-accent-blue-base);
   background-color: var(--color-accent-blue-light);
 }
 
-/* Lendo/inProgress = amarelo */
 .stats-book.inProgress {
   color: var(--color-accent-yellow-base);
   background-color: var(--color-accent-yellow-light);
 }
 
-/* Estrelas */
+/* ===== STARS ===== */
 .stars {
   display: block;
   position: relative;
-  width: 10rem; /* 5 estrelas x 2rem cada */
+  width: 10rem;
   height: 2rem;
   background: url("../assets/icons/star-empty.svg") repeat-x;
   background-size: 2rem 100%;
@@ -294,10 +276,9 @@ main {
   height: 100%;
   background: url("../assets/icons/star-fill.svg") repeat-x;
   background-size: 2rem 100%;
-  width: calc(var(--rating-percent, 0%) * 1); /* pode ajustar para % exato */
+  width: calc(var(--rating-percent, 0%) * 1);
 }
 
-/* Preencher proporcionalmente à nota */
 .stars[data-rating="1"]::before {
   width: 20%;
 }
@@ -314,7 +295,6 @@ main {
   width: 100%;
 }
 
-/* Comentários */
 .comment {
   font: var(--font-body-sm);
   color: var(--color-gray-400);
@@ -322,23 +302,23 @@ main {
   text-align: left;
 }
 
-/* Rodapé do card: botões lado a lado */
+/* ===== CARD FOOTER / ACTIONS ===== */
 .cardFooter {
   display: flex;
-  align-items: center; /* garante alinhamento vertical do conteúdo dos botões */
-  justify-content: center; /* trocar por flex-end se quiser colados à direita */
+  align-items: center;
+  justify-content: space-between;
   gap: 0.8rem;
   width: 100%;
+  max-width: 100%;
   flex-wrap: nowrap;
   min-width: 0;
 }
 
-/* Botões: dividir o espaço igualmente e respeitar padding (sem width:100% que causava overflow) */
 .cardFooter > button {
   flex: 1 1 0;
   min-width: 0;
-  display: flex; /* força layout flex no próprio botão */
-  align-items: center; /* CENTRA VERTICAL */
+  display: flex;
+  align-items: center;
   justify-content: center;
   gap: 1.2rem;
   padding: 0.8rem 1.6rem;
@@ -348,26 +328,25 @@ main {
   white-space: nowrap;
   cursor: pointer;
   border: 0.1rem solid var(--color-gray-200);
-  line-height: 1; /* evita que texto alto empurre o conteúdo */
+  line-height: 1;
   box-sizing: border-box;
 }
 
 .cardFooter button img {
   display: block;
-  width: auto; /* permite que a largura se ajuste proporcionalmente */
-  max-width: 1.6rem; /* limita o tamanho máximo horizontal */
-  height: auto; /* evita corte vertical por height fixo */
-  max-height: 1.6rem; /* limite vertical definido */
+  width: auto;
+  max-width: 1.6rem;
+  height: auto;
+  max-height: 1.6rem;
   object-fit: contain;
   object-position: center;
   margin: 0;
-  padding: 0.125rem 0; /* pequeno espaço acima/abaixo para evitar corte visual */
+  padding: 0.125rem 0;
   align-self: center;
   flex-shrink: 0;
-  overflow: visible; /* garante que nada seja escondido */
+  overflow: visible;
 }
 
-/* estilos específicos (cores) */
 .edit-book {
   color: var(--color-gray-500);
 }
@@ -375,26 +354,23 @@ main {
   color: var(--color-accent-red-bright);
 }
 
-/* IMAGEM: zera margens, evita shrink e garante centralização absoluta */
 .cardFooter button img {
-  display: block; /* remove comportamento inline que provoca desalinhos */
+  display: block;
   width: 1.6rem;
   height: 1.6rem;
   max-width: 100%;
   max-height: 100%;
-  object-fit: contain; /* preserva proporção */
-  margin: 0; /* remove margens indesejadas */
+  object-fit: contain;
+  margin: 0;
   padding: 0;
-  align-self: center; /* força alinhamento vertical no flex do botão */
-  flex-shrink: 0; /* evita que a imagem encolha quando espaço for pequeno */
+  align-self: center;
+  flex-shrink: 0;
 }
 
-/* Fallback caso o SVG tenha espaços internos no viewBox (ajuste fino) */
 .cardFooter button img.nudge {
-  transform: translateY(1px); /* aumente para 2px ou 3px se necessário */
+  transform: translateY(1px);
 }
 
-/* Hover dos botões */
 .edit-book:hover,
 .delete-book:hover {
   background-color: var(--color-gray-100);
@@ -409,7 +385,7 @@ main {
   text-align: center;
 }
 
-/* Footer */
+/* ===== FOOTER ===== */
 .footer {
   background: var(--color-gray-200);
   color: var(--color-navy-low);
