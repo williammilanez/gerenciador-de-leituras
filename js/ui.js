@@ -138,10 +138,19 @@
     const book = Storage.getBooks().find((b) => b.id === id);
     if (!book) return;
 
+    const DEFAULT_COVER = "./assets/images/default-cover.png";
+
     form.dataset.editId = id;
     form.querySelector("#book-title").value = book.title || "";
     form.querySelector("#book-author").value = book.author || "";
-    form.querySelector("#book-image").value = book.image || "";
+
+    const imageInput = form.querySelector("#book-image");
+    if (book.image && book.image !== DEFAULT_COVER) {
+      imageInput.value = book.image;
+    } else {
+      imageInput.value = "";
+    }
+
     form.querySelector("#book-status").value = book.status || "quero-ler";
     form.querySelector("#book-comment").value = book.comment || "";
 
@@ -182,10 +191,19 @@
 
     const DEFAULT_COVER = "./assets/images/default-cover.png";
 
+    let imageValue = form.querySelector("#book-image").value.trim();
+    try {
+      // Tenta criar objeto URL para validar sintaxe
+      new URL(imageValue);
+    } catch {
+      // Se falhar ou estiver vazio, usa default
+      imageValue = DEFAULT_COVER;
+    }
+
     const data = {
       title: form.querySelector("#book-title").value.trim(),
       author: form.querySelector("#book-author").value.trim(),
-      image: form.querySelector("#book-image").value.trim() || DEFAULT_COVER,
+      image: imageValue,
       status: form.querySelector("#book-status").value,
       comment: form.querySelector("#book-comment").value.trim(),
       rating: (() => {
