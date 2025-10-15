@@ -25,7 +25,7 @@
 ## 💻 Projeto
 
 **Gerenciador de Leituras** é um sistema interativo para gerenciar livros que você quer ler, está lendo ou já leu.<br>
-Ele permite cadastrar, editar, excluir e filtrar livros por status, avaliação de livros com estrelas e adição de comentários.<br>
+Ele permite cadastrar, editar e excluir livros, filtrar por status, avaliar cada livro de 1 a 5 estrelas e adicionar comentários.<br>
 O projeto foca em **UX responsiva**, persistência de dados no **LocalStorage** e acessibilidade.<br>
 É totalmente **responsivo** e funcional em **Desktop**, **Tablet** e **Mobile**.
 
@@ -77,7 +77,7 @@ Visualize o layout do projeto:
 ## 📁 Estrutura de Pastas
 
 ```
-reading-manager/
+gerenciador-de-leituras/
 │
 ├── assets/
 │ ├── icons/...
