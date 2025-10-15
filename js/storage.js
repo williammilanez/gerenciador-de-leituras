@@ -20,6 +20,23 @@
   }
 
   function addBook(book) {
+    if (!book || typeof book !== "object") {
+      console.warn("Tentativa de adicionar livro inválido:", book);
+      return null;
+    }
+    if (!book.title || typeof book.title !== "string" || !book.title.trim()) {
+      console.warn("Livro sem título não será salvo:", book);
+      return null;
+    }
+    if (
+      !book.author ||
+      typeof book.author !== "string" ||
+      !book.author.trim()
+    ) {
+      console.warn("Livro sem autor não será salvo:", book);
+      return null;
+    }
+
     const books = getBooks();
     books.push(book);
     saveBooks(books);

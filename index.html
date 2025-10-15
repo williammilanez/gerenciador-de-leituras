@@ -59,6 +59,8 @@
         id="stats"
         aria-label="Estatísticas da biblioteca"
         class="stats container"
+        role="status"
+        aria-live="polite"
       >
         <div class="stat-card">
           <div class="stat-number" id="stat-total">5</div>
@@ -405,6 +407,7 @@
         aria-labelledby="book-form-title"
         hidden
         tabindex="-1"
+        aria-hidden="true"
       >
         <form id="book-form" class="book-form" autocomplete="off" novalidate>
           <h2 id="book-form-title" class="form-title">Adicionar livro</h2>

@@ -24,6 +24,7 @@
     article.setAttribute("aria-labelledby", `title-${book.id}`);
 
     const img = document.createElement("img");
+    img.loading = "lazy";
     img.src = book.image || "./assets/images/default-cover.png";
     img.alt = `Capa do livro ${book.title}`;
     img.onerror = () => {
@@ -62,12 +63,8 @@
     const starsDiv = document.createElement("div");
     starsDiv.className = "stars";
     starsDiv.setAttribute("role", "img");
-    starsDiv.setAttribute("aria-label", `Avaliação: ${book.rating} de 5`);
-    starsDiv.dataset.rating = String(book.rating || 0);
-    const fallback = document.createElement("span");
-    fallback.setAttribute("aria-hidden", "true");
     const rating = Math.floor(Number(book.rating) || 0);
-    fallback.textContent = "★".repeat(rating) + "☆".repeat(5 - rating);
+    starsDiv.setAttribute("aria-label", `Avaliação: ${rating} de 5`);
     starsDiv.dataset.rating = String(rating);
 
     const commentP = document.createElement("p");
@@ -108,8 +105,8 @@
     if (!list.length) {
       const all = Storage.getBooks();
       listEl.innerHTML = !all.length
-        ? '<p class="empty">Nenhum livro adicionado ainda.<br>Comece adicionando seu primeiro livro!</p>'
-        : '<p class="empty">Nenhum livro encontrado para os critérios informados.</p>';
+        ? '<p class="empty" role="status" aria-live="polite">Nenhum livro adicionado ainda. Comece adicionando seu primeiro livro!</p>'
+        : '<p class="empty" role="status" aria-live="polite">Nenhum livro encontrado para os critérios informados.</p>';
       updateStats([]);
       if (statsContainer) statsContainer.style.display = "none";
       return;
@@ -176,6 +173,13 @@
 
   function handleSubmit(e) {
     e.preventDefault();
+    if (!form.checkValidity()) {
+      form.reportValidity(); // mostra mensagens nativas do browser
+      const firstInvalid = form.querySelector(":invalid");
+      if (firstInvalid) firstInvalid.focus();
+      return;
+    }
+
     const DEFAULT_COVER = "./assets/images/default-cover.png";
 
     const data = {
@@ -192,11 +196,6 @@
         return r;
       })(),
     };
-
-    if (!data.title || !data.author) {
-      alert("Preencha o título e o autor (campos obrigatórios).");
-      return;
-    }
 
     if (form.dataset.editId) {
       const editId = Number(form.dataset.editId);
@@ -259,8 +258,42 @@
   }
 
   function init() {
+    if (form) {
+      const titleInput = form.querySelector("#book-title");
+      const authorInput = form.querySelector("#book-author");
+
+      if (titleInput) {
+        titleInput.addEventListener("invalid", () => {
+          titleInput.setCustomValidity(
+            "Por favor, preencha o título do livro."
+          );
+        });
+        titleInput.addEventListener("input", () => {
+          titleInput.setCustomValidity("");
+        });
+      }
+
+      if (authorInput) {
+        authorInput.addEventListener("invalid", () => {
+          authorInput.setCustomValidity("Por favor, informe o nome do autor.");
+        });
+        authorInput.addEventListener("input", () => {
+          authorInput.setCustomValidity("");
+        });
+      }
+    }
+
     if (form) form.addEventListener("submit", handleSubmit);
-    if (searchInput) searchInput.addEventListener("input", applySearchFilter);
+    if (searchInput) {
+      let searchTimeout;
+      searchInput.addEventListener("input", (e) => {
+        clearTimeout(searchTimeout);
+        searchTimeout = setTimeout(() => {
+          applySearchFilter();
+        }, 250);
+      });
+    }
+
     if (filterSelect)
       filterSelect.addEventListener("change", applySearchFilter);
     initRatingControls();

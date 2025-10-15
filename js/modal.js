@@ -6,6 +6,7 @@
   function open(triggerEl) {
     if (!modalEl) return;
     modalEl.hidden = false;
+    modalEl.setAttribute("aria-hidden", "false");
     document.body.classList.add("modal-open");
     addBtn?.setAttribute("aria-expanded", "true");
     const firstInput = modalEl.querySelector("input, textarea, select, button");
@@ -16,6 +17,7 @@
   function close() {
     if (!modalEl) return;
     modalEl.hidden = true;
+    modalEl.setAttribute("aria-hidden", "true");
     document.body.classList.remove("modal-open");
     addBtn?.setAttribute("aria-expanded", "false");
     const trigger = modalEl.__trigger || addBtn;
