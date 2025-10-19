@@ -12,8 +12,8 @@
 <p align="center">
   <img alt="License" src="https://img.shields.io/static/v1?label=license&message=MIT&color=1D4ED8&labelColor=0F172A">
   <img src="https://img.shields.io/badge/status-active-success" alt="Status: active">
-  <img src="https://img.shields.io/github/last-commit/williammilanez/reading-manager" alt="Last commit">
-  <img src="https://img.shields.io/github/languages/top/williammilanez/reading-manager" alt="Top language">
+  <img src="https://img.shields.io/github/last-commit/williammilanez/gerenciador-de-leituras" alt="Last commit">
+  <img src="https://img.shields.io/github/languages/top/williammilanez/gerenciador-de-leituras" alt="Top language">
 </p>
 
 ---
